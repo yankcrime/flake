@@ -1,20 +1,32 @@
+# NixOS configuration for a ThinkPad X230
+
 { config, pkgs, ... }:
 
 {
   imports =
-    [
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.extraEntries = ''
+    menuentry "Windows 10" {
+     chainloader (hd0,1)+1
+   }
+   '';
+
+  networking = {
+     hostName = "bluetip";
+     firewall.enable = false;
+     wireless.enable = true;
+     nameservers = [ "1.1.1.1" "1.0.0.1" ];
+     extraHosts = "192.168.0.249 micro.int.dischord.org micro\n192.168.0.251 syn.int.dischord.org syn";
+  };
 
   time.timeZone = "Europe/London";
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     zsh
     wget
@@ -43,6 +55,7 @@
     xlibs.xev
     xlibs.xprop
     xorg.xmodmap
+    xcape
     firefoxWrapper
     chromium
     vagrant
@@ -51,7 +64,12 @@
     pwgen
     pulseaudioFull
     ncmpcpp
-    lightdm
+    neovim
+    gnumake
+    gcc
+    glibc
+    pkgconfig
+    kitty
   ];
 
   fonts.fonts = with pkgs; [
@@ -65,32 +83,42 @@
     };
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.bash.enableCompletion = true;
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  sound.enable = true;
+  sound.mediaKeys = {
+    enable = true;
+    volumeStep = "5%";
+  };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.windowManager.i3.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware = {
+    pulseaudio.enable = true;
+    bluetooth.enable = true;
+    trackpoint.enable = true;
+    trackpoint.emulateWheel = true;
+    opengl.enable = true;
+    opengl.extraPackages = [ pkgs.vaapiIntel ];
+  };
+
+  virtualisation.docker.enable = true;
+
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = false;
+
   nixpkgs.config = {
     allowUnfree = true;
 
     firefox = {
-     enableGoogleTalkPlugin = true;
      enableAdobeFlash = true;
+     enableAdobeReader = true;
+     enableGoogleTalkPlugin = true;
+     enableOfficialBranding = true;
+     supportsJDK = true;
     };
 
     chromium = {
@@ -103,31 +131,17 @@
 
   programs.zsh.enable = true;
 
-  # Define a user account.
-  users.extraUsers.nick = {
-    isNormalUser = true;
-    uid = 1000;
-    description = "Nick Jones";
-    extraGroups = ["wheel" "audio" "docker" "kvm" "libvirtd"];
-    shell = pkgs.zsh;
-  };
-
-  # Audio
-  hardware.pulseaudio.enable = true;
-
-  # Docker
-  virtualisation.docker.enable = true;
-
-  # sudo
-  security.sudo.enable = true;
-  security.sudo.wheelNeedsPassword = false;
-
-  # Emacs
-  # services.emacs.enable = true;
-
-  # Virtualisation
-  virtualisation.libvirtd = {
-    enable = true;
+  systemd.services.power-tune = {
+    description = "Power Management tunings";
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      ${pkgs.powertop}/bin/powertop --auto-tune
+      ${pkgs.iw}/bin/iw dev wlp3s0 set power_save on
+      for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+        echo powersave > $cpu
+      done
+    '';
+    serviceConfig.Type = "oneshot";
   };
 
   systemd.user.services."xcape" = {
@@ -150,36 +164,14 @@
     serviceConfig.ExecStart = "${pkgs.rxvt_unicode}/bin/urxvtd -q -o";
   };
 
-  networking = {
-     hostName = "zaphod";
-     firewall.enable = false;
-     nameservers = [ "1.1.1.1" "1.0.0.1" ];
-     extraHosts = "192.168.0.249 micro.int.dischord.org micro\n192.168.0.251 syn.int.dischord.org syn";
+  users.extraUsers.nick = {
+    isNormalUser = true;
+    uid = 1000;
+    description = "Nick Jones";
+    extraGroups = ["wheel" "audio" "docker"];
+    shell = pkgs.zsh;
   };
 
-  fileSystems."/mnt/micro/video" = {
-    device = "micro:/mnt/data/video";
-    fsType = "nfs";
-  };
-
-  fileSystems."/mnt/micro/audio" = {
-    device = "micro:/mnt/data/audio";
-    fsType = "nfs";
-  };
-
-  fileSystems."/mnt/micro/dump" = {
-    device = "micro:/mnt/data/dump";
-    fsType = "nfs";
-  };
-
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-  };
-
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "18.03";
 
 }
