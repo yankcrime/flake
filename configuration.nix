@@ -153,33 +153,13 @@
   networking = {
      hostName = "zaphod";
      firewall.enable = false;
-     nameservers = [ "1.1.1.1" "1.0.0.1" ];
-     extraHosts = "192.168.0.249 micro.int.dischord.org micro\n192.168.0.251 syn.int.dischord.org syn";
-  };
-
-  fileSystems."/mnt/micro/video" = {
-    device = "micro:/mnt/data/video";
-    fsType = "nfs";
-  };
-
-  fileSystems."/mnt/micro/audio" = {
-    device = "micro:/mnt/data/audio";
-    fsType = "nfs";
-  };
-
-  fileSystems."/mnt/micro/dump" = {
-    device = "micro:/mnt/data/dump";
-    fsType = "nfs";
+     extraHosts = "192.168.1.251 syn.int.dischord.org syn";
   };
 
   services.xserver.displayManager.lightdm = {
     enable = true;
-  };
+  }
 
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "19.09";
 
 }
