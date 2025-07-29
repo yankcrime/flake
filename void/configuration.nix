@@ -24,13 +24,13 @@ in
   # LUKS encryption
   boot.initrd.luks.devices = {
     crypted = {
-      device = "/dev/disk/by-uuid/f5ee096a-7562-4877-80e5-652a0c9c3143";
+      device = "/dev/disk/by-uuid/b388968a-5e47-4c19-b3a0-b6c5608be206";
       preLVM = true;
       allowDiscards = true;
     };
   };
 
-  networking.hostName = "carboforce";
+  networking.hostName = "void";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
@@ -114,6 +114,8 @@ in
     _1password-gui
     _1password-cli
     wl-clipboard
+    ncmpcpp
+    resources
     (python3.withPackages (ps: with ps; [
 	python-openstackclient
         python-glanceclient
@@ -125,6 +127,8 @@ in
   environment.shells = with pkgs; [ zsh ];
 
   services.throttled.enable = true;
+
+  services.fwupd.enable = true;
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -153,3 +157,4 @@ in
 }
 
 # vim: set filetype=nix tabstop=2 shiftwidth=2 expandtab:
+
