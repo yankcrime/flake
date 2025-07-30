@@ -116,6 +116,11 @@ in
     wl-clipboard
     ncmpcpp
     resources
+    claude-code
+    code-cursor
+    vscode
+    libnotify
+    eog
     (python3.withPackages (ps: with ps; [
 	python-openstackclient
         python-glanceclient
@@ -123,6 +128,22 @@ in
         python-ironicclient
     ]))
   ];
+
+  fonts.fontconfig = {
+    enable = true;
+
+    localConf = ''
+      <!-- Replace Helvetica with Arial -->
+      <match target="pattern">
+        <test qual="any" name="family">
+          <string>Helvetica</string>
+        </test>
+        <edit name="family" mode="assign" binding="strong">
+          <string>Arial</string>
+        </edit>
+      </match>
+    '';
+  };
 
   environment.shells = with pkgs; [ zsh ];
 
