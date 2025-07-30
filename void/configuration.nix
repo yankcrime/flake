@@ -2,8 +2,10 @@
 
 let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in
-
 {
   imports =
     [ 
@@ -69,7 +71,14 @@ in
     }   
   ]; 
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: with pkgs; {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     corefonts
@@ -116,7 +125,7 @@ in
     wl-clipboard
     ncmpcpp
     resources
-    claude-code
+    unstable.claude-code
     code-cursor
     vscode
     libnotify
