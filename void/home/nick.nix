@@ -3,6 +3,7 @@
 let
   syncthingBin = "${pkgs.syncthing}/bin/syncthing";
 in {
+  home.sessionPath = [ "$HOME/bin" ];
   home.packages = [ pkgs.atool pkgs.httpie pkgs.fzf pkgs.go pkgs.syncthing ];
   programs.zsh = {
     enable = true;
