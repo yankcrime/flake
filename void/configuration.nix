@@ -101,6 +101,12 @@ in
     kubectl
     kubernetes-helm
     krew
+    stern
+    kubectl-node-shell
+    kubectl-view-allocations
+    kubectl-cnpg
+    kubectl-tree
+    unstable.vcluster
     rsync
     mosh
     ghostty
@@ -130,6 +136,7 @@ in
     vscode
     libnotify
     eog
+    jq
     (python3.withPackages (ps: with ps; [
 	python-openstackclient
         python-glanceclient
