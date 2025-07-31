@@ -137,7 +137,7 @@ stty -ixon
 [ -f ${pkgs.fzf}/share/fzf/key-bindings.zsh ] && source ${pkgs.fzf}/share/fzf/key-bindings.zsh
 [ -f ${pkgs.fzf}/share/fzf/completion.zsh ] && source ${pkgs.fzf}/share/fzf/completion.zsh
 
-export PATH="''${PATH}:''${HOME}/.krew/bin"
+export PATH="''${PATH}:''${HOME}/.krew/bin:''${HOME}/go/bin"
 
 #zmodload zsh/zprof
 # vim:ts=4:sw=4:ft=zsh:et

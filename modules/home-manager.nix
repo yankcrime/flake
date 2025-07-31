@@ -17,6 +17,7 @@ in {
     fzf 
     go 
     syncthing 
+    mpdscribble
   ];
 
   dconf.enable = true;
@@ -55,6 +56,12 @@ audio_output {
 }
   '';
     network.startWhenNeeded = true; 
+  };
+
+  services.mpdscribble = {
+    enable = true;
+    endpoints."last.fm".username = "yankcrime";
+    endpoints."last.fm".passwordFile = "${config.home.homeDirectory}/.local/share/lastfm";
   };
 
   systemd.user.services.syncthing = {
