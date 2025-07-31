@@ -4,7 +4,15 @@ let
   syncthingBin = "${pkgs.syncthing}/bin/syncthing";
 in {
   home.sessionPath = [ "$HOME/bin" ];
-  home.packages = [ pkgs.atool pkgs.httpie pkgs.fzf pkgs.go pkgs.syncthing ];
+  
+  home.packages = with pkgs; [ 
+    atool 
+    httpie 
+    fzf 
+    go 
+    syncthing 
+  ];
+
   programs.zsh = {
     enable = true;
     plugins = [
@@ -146,7 +154,6 @@ export PATH="''${PATH}:''${HOME}/.krew/bin"
 #zmodload zsh/zprof
 # vim:ts=4:sw=4:ft=zsh:et
     '';
-
   };
 
   programs.neovim = {
@@ -164,13 +171,13 @@ export PATH="''${PATH}:''${HOME}/.krew/bin"
       plenary-nvim
       nvim-treesitter.withAllGrammars
       lualine-nvim
-			github-nvim-theme
+      github-nvim-theme
       gruvbox-nvim
       vim-dirvish
       blink-cmp
-			friendly-snippets
-			telescope-fzf-native-nvim
-			telescope-ui-select-nvim
+      friendly-snippets
+      telescope-fzf-native-nvim
+      telescope-ui-select-nvim
     ];
 
     extraLuaConfig = ''
@@ -298,7 +305,7 @@ vim.opt.laststatus=3
     
         git_branch = {
           style = "fg:dark_grey";
-          symbol = " ";
+          symbol = " ";
         };
     
         git_status.style = "fg:dark_grey";
@@ -341,7 +348,7 @@ vim.opt.laststatus=3
     
         python = {
           disabled = false;
-          format = "via [ ($version )]($style)(($virtualenv))";
+          format = "via [ ($version )]($style)(($virtualenv))";
           style = "fg:dark_grey";
           detect_extensions = [ ];
           detect_files = [
@@ -368,7 +375,7 @@ vim.opt.laststatus=3
         lua.disabled = true;
         nodejs.disabled = true;
         aws.disabled = true;
-        gcloud.disabled = true;
+        gcloud.disabled = true;  
       };
     };
 
@@ -379,12 +386,10 @@ vim.opt.laststatus=3
     };
     "org/gnome/desktop/interface" = {
       enable-animations = false;
+      cursor-size = 32;  # Default is 24
     };
     "org/gnome/desktop/wm/preferences" = {
       resize-with-right-button = true;
-    };
-    "org/gnome/desktop/interface" = {
-      cursor-size = 32;  # Default is 24
     };
     "org/gnome/desktop/wm/keybindings" = {
       show-desktop = [ "<Super>d" ];
@@ -429,8 +434,4 @@ audio_output {
   };
 
   home.stateVersion = "25.05";
-
 }
-
-# vim: set filetype=nix tabstop=2 shiftwidth=2 expandtab:
-

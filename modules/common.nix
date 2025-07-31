@@ -1,64 +1,39 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-in
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
-    ];
-
-  # Use the systemd-boot EFI boot loader.
+  # Boot configuration
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Limit the number of entries
   boot.loader.systemd-boot.configurationLimit = 5;
 
-  # LUKS encryption
-  boot.initrd.luks.devices = {
-    crypted = {
-      device = "/dev/disk/by-uuid/b388968a-5e47-4c19-b3a0-b6c5608be206";
-      preLVM = true;
-      allowDiscards = true;
-    };
-  };
-
-  networking.hostName = "void";
-  networking.networkmanager.enable = true;
-
+  # Locale and time
   time.timeZone = "Europe/London";
-
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "uk";
   };
 
+  # User configuration
   users.users.nick = {
     isNormalUser = true;
     description = "Nick Jones";
     extraGroups = [ "wheel" "docker" ];
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcfkOqEi+AeoSeJcij7ltWV/1n4A5opWh6PQDyo/6vI nick@deadline.local" ];
+    openssh.authorizedKeys.keys = [ 
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcfkOqEi+AeoSeJcij7ltWV/1n4A5opWh6PQDyo/6vI nick@deadline.local" 
+    ];
     shell = pkgs.zsh;
   };
 
-  home-manager.users.nick = import ./home/nick.nix;
-
+  # Programs
   programs = {
     zsh.enable = true;
     dconf.enable = true;
     gnupg.agent.enable = true;
   };
 
+  # Security
   security.sudo.extraRules = [   
     {   
       users = ["nick"];   
@@ -69,23 +44,21 @@ in
         }   
       ];   
     }   
-  ]; 
+  ];
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs: with pkgs; {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
+  # Nixpkgs configuration
+  nixpkgs.config.allowUnfree = true;
 
+  # Common packages
   environment.systemPackages = with pkgs; [
+    # Fonts
     corefonts
     inter
     roboto-mono
     jetbrains-mono
     noto-fonts-emoji
+
+    # Terminal tools
     vim
     neovim
     wget
@@ -97,57 +70,64 @@ in
     tree
     tmux
     unzip
+    rsync
+    mosh
+    fastfetch
+    jq
+
+    # Development tools
     qemu
+
+    # Kubernetes tools
     kubectl
     kubernetes-helm
     krew
-    stern
-    kubectl-node-shell
-    kubectl-view-allocations
-    kubectl-cnpg
-    kubectl-tree
-    unstable.vcluster
-    rsync
-    mosh
-    ghostty
+    kubie
+
+    # System tools
     gnupg
+    powertop
+    imwheel
+    nfs-utils
+    throttled
+    wl-clipboard
+    libnotify
+
+    # GUI applications
+    ghostty
     firefox
     google-chrome
     slack
-    kubie
     discord
     newsflash
     obsidian
     signal-desktop
     syncthing
     gnome-tweaks
-    fastfetch
-    throttled
-    powertop
-    imwheel
-    nfs-utils
     _1password-gui
     _1password-cli
-    wl-clipboard
-    ncmpcpp
     resources
-    unstable.claude-code
+    eog
     code-cursor
     vscode
-    libnotify
-    eog
-    jq
-    (python3.withPackages (ps: with ps; [
-	python-openstackclient
-        python-glanceclient
-        python-keystoneclient
-        python-ironicclient
-    ]))
-  ];
 
+    # Media
+    ncmpcpp
+
+    # Python with OpenStack clients
+    (python3.withPackages (ps: with ps; [
+      python-openstackclient
+      python-glanceclient
+      python-keystoneclient
+      python-ironicclient
+    ]))
+  ] ++ (with pkgs-unstable; [
+    claude-code
+  ]);
+
+  # Font configuration
   fonts.fontconfig = {
     enable = true;
-
     localConf = ''
       <!-- Replace Helvetica with Arial -->
       <match target="pattern">
@@ -161,28 +141,38 @@ in
     '';
   };
 
+  # Environment
   environment.shells = with pkgs; [ zsh ];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  services.throttled.enable = true;
+  # Services
+  services = {
+    throttled.enable = true;
+    fwupd.enable = true;
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+    };
+    openssh.enable = true;
+    qemuGuest.enable = true;
+    mpd.user = "nick";
+  };
 
-  services.fwupd.enable = true;
+  # Networking
+  networking.networkmanager.enable = true;
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  services.openssh.enable = true;
-  services.qemuGuest.enable = true;
-
-  services.mpd.user = "nick";
-
+  # Nix settings
   nix.settings.experimental-features = ["nix-command" "flakes"];   
   nix.optimise.automatic = true;
 
+  # Virtualization
   virtualisation.docker.enable = true;
 
+  # Power management
   powerManagement.powertop.enable = true;
 
+  # Swap
   swapDevices = [
     {
       device = "/.swap";
@@ -192,6 +182,3 @@ in
 
   system.stateVersion = "25.05";
 }
-
-# vim: set filetype=nix tabstop=2 shiftwidth=2 expandtab:
-
