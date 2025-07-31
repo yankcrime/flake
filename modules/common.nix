@@ -110,6 +110,7 @@
     eog
     code-cursor
     vscode
+    zoom-us
 
     # Media
     ncmpcpp
