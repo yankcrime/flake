@@ -20,25 +20,6 @@ in {
     mpdscribble
   ];
 
-  dconf.enable = true;
-  dconf.settings = {
-    "org/gnome/desktop/input-sources" = {
-      xkb-options = [ "ctrl:nocaps" ];
-    };
-    "org/gnome/desktop/interface" = {
-      enable-animations = false;
-      cursor-size = 32;  # Default is 24
-    };
-    "org/gnome/desktop/wm/preferences" = {
-      resize-with-right-button = true;
-    };
-    "org/gnome/desktop/wm/keybindings" = {
-      show-desktop = [ "<Super>d" ];
-    };
-    "org/gnome/shell/keybindings" = {
-      toggle-message-tray = [];  # Disables Super+V
-    };
-  };
 
   services.mpd = {
     enable = true;

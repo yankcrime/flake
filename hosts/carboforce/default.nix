@@ -17,4 +17,17 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    stern
+    kubectl-node-shell
+    kubectl-view-allocations
+    kubectl-cnpg
+    kubectl-tree
+    nixos-generators
+  ] ++ (with pkgs-unstable; [
+    vcluster
+  ]);
+
+  services.tailscale.enable = true;
+
 }

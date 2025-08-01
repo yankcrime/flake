@@ -15,8 +15,8 @@
   let
     system = "x86_64-linux";
     
-    # Helper function to create a NixOS system with optional home-manager
-    mkNixosSystem = { hostname, enableHomeManager ? true, extraModules ? [] }: 
+    # Helper function to create a NixOS system with optional home-manager and GUI
+    mkNixosSystem = { hostname, enableHomeManager ? true, enableGUI ? true, extraModules ? [] }: 
       nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { 
@@ -28,6 +28,10 @@
         };
         modules = [
           ./hosts/${hostname}
+          ./modules/gui.nix
+          {
+            modules.gui.enable = enableGUI;
+          }
         ] ++ nixpkgs.lib.optionals enableHomeManager [
           home-manager.nixosModules.home-manager
           {
@@ -42,12 +46,21 @@
     nixosConfigurations = {
       void = mkNixosSystem { 
         hostname = "void"; 
-        enableHomeManager = true; 
+        enableHomeManager = true;
+        enableGUI = true;
       };
 
       carboforce = mkNixosSystem { 
         hostname = "carboforce"; 
-        enableHomeManager = true; 
+        enableHomeManager = true;
+        enableGUI = true;
+      };
+
+      # Headless development VM
+      rain = mkNixosSystem {
+        hostname = "rain";
+        enableHomeManager = true;
+        enableGUI = false;
       };
     };
   };

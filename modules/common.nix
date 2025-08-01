@@ -2,8 +2,6 @@
 
 {
   # Boot configuration
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.configurationLimit = 5;
 
@@ -29,8 +27,13 @@
   # Programs
   programs = {
     zsh.enable = true;
-    dconf.enable = true;
     gnupg.agent.enable = true;
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/nick/src/nixos/";
+    };
   };
 
   # Security
@@ -49,15 +52,8 @@
   # Nixpkgs configuration
   nixpkgs.config.allowUnfree = true;
 
-  # Common packages
+  # Common packages (non-GUI)
   environment.systemPackages = with pkgs; [
-    # Fonts
-    corefonts
-    inter
-    roboto-mono
-    jetbrains-mono
-    noto-fonts-emoji
-
     # Terminal tools
     vim
     neovim
@@ -90,29 +86,9 @@
     imwheel
     nfs-utils
     throttled
-    wl-clipboard
-    libnotify
-
-    # GUI applications
-    ghostty
-    firefox
-    google-chrome
-    slack
-    discord
-    newsflash
-    obsidian
-    signal-desktop
-    syncthing
-    gnome-tweaks
-    _1password-gui
     _1password-cli
-    resources
-    eog
-    code-cursor
-    vscode
-    zoom-us
 
-    # Media
+    # Media (terminal-based)
     ncmpcpp
 
     # Python with OpenStack clients
@@ -126,37 +102,15 @@
     claude-code
   ]);
 
-  # Font configuration
-  fonts.fontconfig = {
-    enable = true;
-    localConf = ''
-      <!-- Replace Helvetica with Arial -->
-      <match target="pattern">
-        <test qual="any" name="family">
-          <string>Helvetica</string>
-        </test>
-        <edit name="family" mode="assign" binding="strong">
-          <string>Arial</string>
-        </edit>
-      </match>
-    '';
-  };
 
   # Environment
   environment.shells = with pkgs; [ zsh ];
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Services
   services = {
     throttled.enable = true;
     fwupd.enable = true;
-    xserver = {
-      enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
     openssh.enable = true;
-    qemuGuest.enable = true;
     mpd.user = "nick";
   };
 
