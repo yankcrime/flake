@@ -19,6 +19,8 @@ in
     # D-Bus (required for GUI applications and desktop environments)
     services.dbus.enable = true;
 
+    services.flatpak.enable = true;
+
     # GUI-specific programs
     programs.dconf.enable = true;
 
@@ -99,6 +101,7 @@ in
       gnome-tweaks
       eog
       resources
+      tuba
 
       # Security
       _1password-gui

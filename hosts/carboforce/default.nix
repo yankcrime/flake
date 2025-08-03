@@ -24,6 +24,7 @@
     kubectl-cnpg
     kubectl-tree
     nixos-generators
+    gnome-software
   ] ++ (with pkgs-unstable; [
     vcluster
   ]);
