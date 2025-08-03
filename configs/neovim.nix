@@ -8,6 +8,9 @@
       ripgrep
       fd
       lua-language-server
+      gopls
+      pyright
+      yaml-language-server
     ];
   
     plugins = with pkgs.vimPlugins; [
@@ -23,6 +26,7 @@
       friendly-snippets
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
+      nvim-lspconfig
     ];
 
     extraLuaConfig = ''
@@ -57,23 +61,129 @@ require("telescope").setup({
 })
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("ui-select")
+
+-- LSP Configuration
+local lspconfig = require('lspconfig')
+
+-- Common LSP keybindings
+local on_attach = function(client, bufnr)
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+end
+
+-- Configure LSP servers
+lspconfig.gopls.setup{
+  on_attach = on_attach,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
+
+lspconfig.pyright.setup{
+  on_attach = on_attach,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true
+      }
+    }
+  }
+}
+
+lspconfig.yamlls.setup{
+  on_attach = on_attach,
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://json.schemastore.org/github-action.json"] = "/.github/actions/*/action.yml",
+        ["https://json.schemastore.org/ansible-stable-2.9.json"] = "/roles/tasks/*.{yml,yaml}",
+        ["https://json.schemastore.org/prettierrc.json"] = "/.prettierrc.{yml,yaml}",
+        ["https://json.schemastore.org/kustomization.json"] = "/kustomization.{yml,yaml}",
+        ["https://json.schemastore.org/chart.json"] = "/Chart.{yml,yaml}",
+        ["https://json.schemastore.org/circleciconfig.json"] = "/.circleci/**/*.{yml,yaml}",
+      },
+    },
+  },
+}
 local blink = require("blink.cmp")
 blink.setup {
   keymap = { preset = "super-tab" },
   completion = {
-    documentation = { auto_show = false },
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 500,
+    },
     accept = {
       auto_brackets = {
+        enabled = true,
         kind_resolution = {
           blocked_filetypes = { "typescriptreact", "javascriptreact" },
         },
       },
     },
+    menu = {
+      draw = {
+        columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+      },
+    },
   },
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },
+    providers = {
+      lsp = {
+        name = "LSP",
+        module = "blink.cmp.sources.lsp",
+        enabled = true,
+        score_offset = 90,
+      },
+      path = {
+        name = "Path",
+        module = "blink.cmp.sources.path",
+        score_offset = 3,
+        opts = {
+          trailing_slash = false,
+          label_trailing_slash = true,
+          get_cwd = function(context) return vim.fn.expand(("#%d:p:h"):format(context.bufnr)) end,
+          show_hidden_files_by_default = false,
+        }
+      },
+      snippets = {
+        name = "Snippets",
+        module = "blink.cmp.sources.snippets",
+        score_offset = 85,
+      },
+      buffer = {
+        name = "Buffer",
+        module = "blink.cmp.sources.buffer",
+        score_offset = 5,
+      },
+    },
   },
   fuzzy = { implementation = "prefer_rust_with_warning" },
+  signature = { enabled = true },
 }
 vim.g.mapleader = ' ' -- Space
 local builtin = require('telescope.builtin')
