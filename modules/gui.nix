@@ -1,7 +1,8 @@
 { config, lib, pkgs, pkgs-unstable, ... }:
 
-with lib;
-
+let
+  inherit (lib) mkEnableOption mkIf;
+in
 {
   options.modules.gui = {
     enable = mkEnableOption "GUI desktop environment and applications";
