@@ -27,6 +27,7 @@
   # Programs
   programs = {
     zsh.enable = true;
+    direnv.enable = true;
     gnupg.agent.enable = true;
     nh = {
       enable = true;

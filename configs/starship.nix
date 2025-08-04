@@ -6,7 +6,7 @@
   
     settings = {
       add_newline = false;
-      format = "$hostname$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$kubernetes$docker_context$package$buf$c$cmake$container$golang$helm$java$lua$nodejs$perl$pulumi$purescript$python$rlang$ruby$rust$swift$terraform$vagrant$nix_shell$conda$memory_usage$gcloud$openstack$azure$env_var$custom$sudo$cmd_duration$fill$time$line_break$jobs$battery$status$shell$character";
+      format = "$hostname$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$kubernetes$direnv$docker_context$package$buf$c$cmake$container$golang$helm$java$lua$nodejs$perl$pulumi$purescript$python$rlang$ruby$rust$swift$terraform$vagrant$nix_shell$conda$memory_usage$gcloud$openstack$azure$env_var$custom$sudo$cmd_duration$fill$time$line_break$jobs$battery$status$shell$character";
       
       hostname = {
         ssh_only = true;
@@ -48,6 +48,11 @@
         disabled = false;
         style = "";
         format = "[$time]($style) ";
+      };
+
+      nix_shell = {
+        disabled = true;
+        format = "via [❄️ $state( \($name\))](bold blue) ";
       };
   
       terraform.disabled = true;
@@ -98,6 +103,7 @@
       nodejs.disabled = true;
       aws.disabled = true;
       gcloud.disabled = true;  
+      direnv.disabled = false;
     };
   };
 }

@@ -90,10 +90,6 @@ alias k='kubectl'
 setopt print_exit_value
 setopt PROMPT_SUBST
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' formats 'on %b '
-zstyle ':vcs_info:*' enable git
-
 # make it work like vim
 #
 bindkey -v

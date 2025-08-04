@@ -18,6 +18,8 @@ in {
     go 
     syncthing 
     mpdscribble
+    direnv
+    nix-direnv
   ];
 
 
