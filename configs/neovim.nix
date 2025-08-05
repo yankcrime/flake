@@ -204,6 +204,7 @@ vim.cmd([[
     augroup custom_appearance
       autocmd!
       au ColorScheme * hi Normal gui=NONE guifg=NONE guibg=NONE ctermfg=none ctermbg=NONE
+      au ColorScheme * hi Statusline guifg=NONE guibg=#000000 gui=bold
     augroup END
     function! s:statusline_expr()
         let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : '''}"
