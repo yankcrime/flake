@@ -103,29 +103,6 @@ export KEYTIMEOUT=1
 
 bindkey '^[[Z' reverse-menu-complete # make shift-tab work in reverse
 
-# change cursor shape based on which vi mode we're in
-# via https://emily.st/2013/05/03/zsh-vi-cursor/
-#
-function zle-keymap-select zle-line-init
-{
-    case $KEYMAP in
-        vicmd)      print -n -- "\e[1 q";;  # block cursor
-        viins|main) print -n -- "\e[5 q";;  # line cursor
-    esac
-
-    zle reset-prompt
-    zle -R
-}
-
-function zle-line-finish
-{
-    print -n -- "\e[1 q"  # block cursor
-}
-
-zle -N zle-line-init
-zle -N zle-line-finish
-zle -N zle-keymap-select
-
 # Allow use of Ctrl-S in vim
 #
 stty -ixon
