@@ -24,6 +24,12 @@
     kubectl-cnpg
     kubectl-tree
     nixos-generators
+    (google-cloud-sdk.withExtraComponents (
+      with google-cloud-sdk.components;
+      [
+        gke-gcloud-auth-plugin
+      ]
+    ))
   ] ++ (with pkgs-unstable; [
     vcluster
   ]);
