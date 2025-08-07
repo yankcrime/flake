@@ -74,6 +74,7 @@
 
     # Development tools
     qemu
+    gnumake
 
     # Kubernetes tools
     kubectl

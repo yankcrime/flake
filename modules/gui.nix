@@ -102,6 +102,7 @@ in
       eog
       resources
       tuba
+      gnome-sound-recorder
 
       # Security
       _1password-gui
@@ -109,6 +110,7 @@ in
       # Media and utilities
       zoom-us
       x11docker
+      pkgs-unstable.euphonica
     ];
 
     # Environment variables for Wayland
