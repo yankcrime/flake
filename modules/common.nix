@@ -71,10 +71,12 @@
     mosh
     fastfetch
     jq
+    file
 
     # Development tools
     qemu
     gnumake
+    mkcert
 
     # Kubernetes tools
     kubectl
@@ -83,6 +85,7 @@
     kubie
 
     # System tools
+    apg
     gnupg
     powertop
     imwheel
