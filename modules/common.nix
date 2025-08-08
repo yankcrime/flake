@@ -72,6 +72,9 @@
     fastfetch
     jq
     file
+    doggo
+    dig
+    openssl
 
     # Development tools
     qemu
@@ -90,6 +93,7 @@
     powertop
     imwheel
     nfs-utils
+    pciutils
     throttled
     _1password-cli
 
@@ -102,6 +106,7 @@
       python-glanceclient
       python-keystoneclient
       python-ironicclient
+      python-octaviaclient
     ]))
   ] ++ (with pkgs-unstable; [
     claude-code
