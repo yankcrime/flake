@@ -95,7 +95,7 @@ in
 
       # Development
       vscode
-      code-cursor
+      pkgs-unstable.code-cursor
 
       # GNOME applications
       gnome-tweaks

@@ -35,6 +35,7 @@
     kubectl-cnpg
     kubectl-tree
     nixos-generators
+    fprintd
     (google-cloud-sdk.withExtraComponents (
       with google-cloud-sdk.components;
       [
@@ -46,5 +47,6 @@
   ]);
 
   services.tailscale.enable = true;
+  services.fprintd.enable = true;
 
 }
