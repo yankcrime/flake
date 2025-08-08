@@ -63,6 +63,7 @@
     viddy
     btop
     zsh
+    zsh-vi-mode
     git
     tree
     tmux
