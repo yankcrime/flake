@@ -76,6 +76,7 @@
     doggo
     dig
     openssl
+    ripgrep
 
     # Development tools
     qemu

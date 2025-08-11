@@ -34,8 +34,10 @@
     kubectl-view-allocations
     kubectl-cnpg
     kubectl-tree
+    cilium-cli
     nixos-generators
     fprintd
+    iptables
     (google-cloud-sdk.withExtraComponents (
       with google-cloud-sdk.components;
       [
