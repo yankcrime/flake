@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, pkgs-unstable, inputs, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
@@ -77,7 +77,7 @@ in
       libnotify
 
       # Terminal applications
-      ghostty
+      inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       # Browsers
       firefox
@@ -103,6 +103,9 @@ in
       resources
       tuba
       gnome-sound-recorder
+      gnomeExtensions.clipboard-history
+      papers
+      apostrophe
 
       # Security
       _1password-gui

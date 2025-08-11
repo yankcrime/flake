@@ -9,9 +9,20 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
+
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: 
+  outputs = {
+    self,
+    nixpkgs,
+    ghostty,
+    nixpkgs-unstable,
+    home-manager, ...
+  }@inputs:
   let
     system = "x86_64-linux";
     
