@@ -88,6 +88,7 @@
     kubernetes-helm
     krew
     kubie
+    helm-docs
 
     # System tools
     apg

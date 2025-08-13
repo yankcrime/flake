@@ -9,7 +9,7 @@
   networking.hostName = "void";
   networking.firewall.enable = false;
   networking.hosts = {
-    "172.18.0.4" = [
+    "172.18.0.3" = [
       "console.unikorn.nscale.com"
       "identity.unikorn.nscale.com"
       "region.unikorn.nscale.com"
