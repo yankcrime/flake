@@ -66,7 +66,6 @@
     zsh-vi-mode
     git
     tree
-    tmux
     unzip
     rsync
     mosh
