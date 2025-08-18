@@ -11,7 +11,8 @@ in
   config = mkIf config.modules.gui.enable {
     # X11/Wayland and desktop environment
     services.xserver = {
-      enable = true; displayManager.gdm.enable = true;
+      enable = true;
+      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };
 
@@ -92,7 +93,7 @@ in
             layer = "top";
             position = "top";
             spacing = 0;
-            height = 30;
+            height = 26;
             modules-left = [
               "niri/workspaces"
               "niri/window"

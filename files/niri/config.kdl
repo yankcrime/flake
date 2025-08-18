@@ -101,7 +101,7 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets,ssh,gpg"
 spawn-at-startup "export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh"
-spawn-at-startup "swaybg -m tile -i /home/nick/Sync/Configs/Wallpapers/isopurple.png"
+spawn-at-startup "swaybg -m tile -i /home/nick/Sync/Configs/Wallpapers/Streak_Mac_002.jpg"
 
 prefer-no-csd
 

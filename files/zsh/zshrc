@@ -1,0 +1,92 @@
+export EDITOR="nvim"
+export GPG_TTY=$(tty)
+export BAT_THEME="ansi"
+export FZF_DEFAULT_OPTS="--color=bw"
+export KEYTIMEOUT=1
+
+# history and general options
+#
+HISTSIZE=10000000
+SAVEHIST=10000000
+TMOUT=0
+HISTFILE=~/.history
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt nohup
+umask 022
+
+autoload -Uz +X compaudit compinit
+autoload -Uz +X bashcompinit
+
+# only bother with rebuilding, auditing, and compiling the compinit
+# file once a whole day has passed. The -C flag bypasses both the
+# check for rebuilding the dump file and the usual call to compaudit.
+# via @emilyst
+#
+setopt EXTENDEDGLOB
+for dump in $HOME/.zcompdump(N.mh+24); do
+  echo 'Re-initializing ZSH completions'
+  touch $dump
+  compinit
+  bashcompinit
+  if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+    zcompile "$dump"
+  fi
+done
+unsetopt EXTENDEDGLOB
+compinit -C
+
+# other stuff that makes zsh worthwhile
+#
+autoload -U promptinit && promptinit
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+local knownhosts
+zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
+
+# some other {sensible,useful} shortcuts
+#
+alias publicip='curl http://icanhazip.com'
+alias ls='ls -F'
+alias view='vim -R'
+alias sshx='ssh -c arcfour,blowfish-cbc -XC'
+alias uuidgen="uuidgen | tr 'A-Z' 'a-z'"
+alias docekr='docker'
+alias vim='nvim'
+alias k='kubectl'
+
+# prompt and window title
+#
+setopt print_exit_value
+setopt PROMPT_SUBST
+
+export KEYTIMEOUT=1
+
+bindkey '^[[Z' reverse-menu-complete # make shift-tab work in reverse
+
+# Allow use of Ctrl-S in vim
+#
+stty -ixon
+
+# zsh-vi-mode stuff
+# Always start in insert mode
+#
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
+# Use evalcache for tool initialization
+_evalcache direnv hook zsh
+_evalcache starship init zsh
+
+export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/go/bin:${HOME}/bin"
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+
+#zmodload zsh/zprof
+# vim:ts=4:sw=4:ft=zsh:et
