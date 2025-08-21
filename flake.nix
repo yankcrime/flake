@@ -14,6 +14,11 @@
       url = "github:ghostty-org/ghostty";
     };
 
+    darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {
@@ -21,19 +26,22 @@
     nixpkgs,
     ghostty,
     nixpkgs-unstable,
-    home-manager, ...
+    home-manager,
+    darwin,
+    ...
   }@inputs:
   let
-    system = "x86_64-linux";
+    linuxSystem = "x86_64-linux";
+    darwinSystem = "aarch64-darwin";
     
     # Helper function to create a NixOS system with optional home-manager and GUI
     mkNixosSystem = { hostname, enableHomeManager ? true, enableGUI ? true, extraModules ? [] }: 
       nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = linuxSystem;
         specialArgs = { 
           inherit inputs;
           pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
+            system = linuxSystem;
             config.allowUnfree = true;
           };
         };
@@ -51,6 +59,30 @@
             home-manager.users.nick = import ./modules/home-manager.nix;
           }
         ] ++ extraModules;
+      };
+
+    # Helper function to create a Darwin system
+    mkDarwinSystem = { hostname, enableHomeManager ? true }: 
+      darwin.lib.darwinSystem {
+        system = darwinSystem;
+        specialArgs = { 
+          inherit inputs;
+          pkgs-unstable = import nixpkgs-unstable {
+            system = darwinSystem;
+            config.allowUnfree = true;
+          };
+        };
+        modules = [
+          ./hosts/${hostname}
+          ./modules/darwin.nix
+        ] ++ nixpkgs.lib.optionals enableHomeManager [
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.nick = import ./modules/home-manager-darwin.nix;
+          }
+        ];
       };
   in
   {
@@ -72,6 +104,13 @@
         hostname = "rain";
         enableHomeManager = true;
         enableGUI = false;
+      };
+    };
+
+    darwinConfigurations = {
+      deadline = mkDarwinSystem {
+        hostname = "deadline";
+        enableHomeManager = true;
       };
     };
   };

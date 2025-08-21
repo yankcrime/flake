@@ -11,7 +11,6 @@ in {
   home.sessionPath = [ "$HOME/bin" ];
   
   home.packages = with pkgs; [ 
-    atool 
     httpie 
     fzf 
     go 
