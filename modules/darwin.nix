@@ -1,5 +1,8 @@
-{ inputs, pkgs, pkgs-unstable, ... }:
+{ inputs, pkgs, pkgs-unstable, config, ... }:
 
+let
+  commonPackages = import ./common.nix { inherit config pkgs pkgs-unstable; };
+in
 {
   homebrew = {
     enable = true;
@@ -27,9 +30,7 @@
   # Nixpkgs configuration
   nixpkgs.config.allowUnfree = true;
   
-  environment.systemPackages = with pkgs-unstable; [
-    claude-code
-  ];
+  environment.systemPackages = commonPackages.unstable;
 
   users.users.nick = {
     home = "/Users/nick";

@@ -86,7 +86,7 @@ _evalcache direnv hook zsh
 _evalcache starship init zsh
 
 export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/go/bin:${HOME}/bin"
-export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+# export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 #zmodload zsh/zprof
 # vim:ts=4:sw=4:ft=zsh:et

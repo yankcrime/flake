@@ -56,7 +56,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.nick = import ./modules/home-manager.nix;
+            home-manager.users.nick = import ./modules/home-manager-linux.nix;
           }
         ] ++ extraModules;
       };
@@ -110,6 +110,12 @@
     darwinConfigurations = {
       deadline = mkDarwinSystem {
         hostname = "deadline";
+        enableHomeManager = true;
+      };
+    };
+    darwinConfigurations = {
+      nsc1alt0066 = mkDarwinSystem {
+        hostname = "nsc1alt0066";
         enableHomeManager = true;
       };
     };
