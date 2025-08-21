@@ -9,6 +9,13 @@
     wget
     curl
     git
+    yq
+    stern
+    kubectl-node-shell
+    kubectl-view-allocations
+    kubectl-cnpg
+    kubectl-tree
+    cilium-cli
     (google-cloud-sdk.withExtraComponents (
       with google-cloud-sdk.components;
       [
