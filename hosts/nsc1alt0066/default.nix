@@ -9,7 +9,15 @@
     wget
     curl
     git
-  ];
+    (google-cloud-sdk.withExtraComponents (
+      with google-cloud-sdk.components;
+      [
+        gke-gcloud-auth-plugin
+      ]
+    ))
+  ] ++ (with pkgs-unstable; [
+    vcluster
+  ]);
 
   # System configuration version
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;

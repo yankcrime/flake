@@ -19,6 +19,8 @@ in
       "monodraw"
       "rectangle-pro"
       "slack"
+      "leader-key"
+      "zoom"
     ];
 
     brews = [
@@ -30,7 +32,10 @@ in
   # Nixpkgs configuration
   nixpkgs.config.allowUnfree = true;
   
-  environment.systemPackages = commonPackages.shared ++ commonPackages.unstable;
+  environment.systemPackages = commonPackages.shared ++ commonPackages.unstable ++ (with pkgs;
+  [
+    nh
+  ]);
 
   users.users.nick = {
     home = "/Users/nick";
