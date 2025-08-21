@@ -30,7 +30,7 @@ in
   # Nixpkgs configuration
   nixpkgs.config.allowUnfree = true;
   
-  environment.systemPackages = commonPackages.unstable;
+  environment.systemPackages = commonPackages.shared ++ commonPackages.unstable;
 
   users.users.nick = {
     home = "/Users/nick";

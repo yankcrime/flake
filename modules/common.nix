@@ -5,7 +5,6 @@
   shared = with pkgs; [
     # Terminal tools
     vim
-    neovim
     wget
     curl
     btop

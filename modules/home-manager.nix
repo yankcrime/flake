@@ -14,6 +14,71 @@ in
   home.packages = commonPackages.home;
 
   programs = {
+    git = {
+      enable = true;
+      userEmail = "nick@dischord.org";
+      userName = "Nick Jones";
+      signing = {
+        key = "B264F01E309D20E4";
+        signByDefault = true;
+      };
+      aliases = {
+        up = "!git remote update -p; git merge --ff-only @{u}";
+        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
+      };
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
+        column = {
+          ui = "auto";
+        };
+        branch = {
+          sort = "-committerdate";
+        };
+        tag = {
+          sort = "version:refname";
+        };
+        diff = {
+          algorithm = "histogram";
+          colorMoved = "plain";
+          mnemonicPrefix = true;
+          renames = true;
+        };
+        push = {
+          default = "simple";
+          autoSetupRemote = true;
+          followTags = true;
+        };
+        fetch = {
+          prune = true;
+          pruneTags = true;
+          all = true;
+        };
+        merge = {
+          conflictstyle = "zdiff3";
+        };
+        credential = {
+          helper = "cache --timeout=7200";
+        };
+        gitreview = {
+          username = "yankcrime";
+        };
+        github = {
+          user = "yankcrime";
+        };
+        "url \"ssh://git@github.com/\"" = {
+          insteadOf = [ "https://github.com/" "git://github.com/" ];
+        };
+        "filter \"lfs\"" = {
+          clean = "git-lfs clean -- %f";
+          smudge = "git-lfs smudge -- %f";
+          process = "git-lfs filter-process";
+          required = true;
+        };
+      };
+    };
+
     direnv = {
       enable = true;
       enableZshIntegration = false;
