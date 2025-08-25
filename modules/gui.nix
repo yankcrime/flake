@@ -93,12 +93,15 @@ in
             layer = "top";
             position = "top";
             spacing = 0;
-            height = 26;
+            height = 24;
             modules-left = [
               "niri/workspaces"
               "niri/window"
             ];
-            modules-center = [ "clock" ];
+            modules-center = [ 
+              "clock" 
+              "custom/weather"
+            ];
             modules-right = [
               "tray"
               "network"
@@ -145,6 +148,13 @@ in
               on-click-middle = "close";
               on-click-right = "fullscreen";
               icon-size = 48;
+            };
+            "custom/weather" = {
+              format = "{}°";
+              tooltip = true;
+              interval = 3600;
+              exec = "wttrbar --location Edinburgh";
+              return-type = "json";
             };
             network = {
               format-wifi = "  {essid}";
@@ -293,6 +303,7 @@ in
       swaylock
       mako
       pavucontrol
+      wttrbar
     ];
 
     # Environment variables for Wayland
