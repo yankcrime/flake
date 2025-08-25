@@ -115,10 +115,15 @@ run-shell ${pkgs.tmuxPlugins.extrakto}/share/tmux-plugins/extrakto/extrakto.tmux
           name = "zsh-z";
           src = "${pkgs.zsh-z}/share/zsh-z";
         }
+        {
+          name = "vi-mode";
+          src = pkgs.zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+        }
       ];
 
       initContent = ''
-# Load zsh-vi-mode plugin manually
+
 source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 '' + builtins.readFile ../files/zsh/zshrc + ''

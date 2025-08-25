@@ -185,7 +185,7 @@ in
             "custom/mako" = {
               format = "{icon}";
               format-icons = {
-                default = " ";
+                default = "  ";
               };
               exec = "~/bin/mako-dnd.sh";
               interval = 0;
@@ -307,6 +307,6 @@ in
     ];
 
     # Environment variables for Wayland
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }

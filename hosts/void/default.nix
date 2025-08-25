@@ -38,6 +38,7 @@
     nixos-generators
     fprintd
     iptables
+    drawio
     (google-cloud-sdk.withExtraComponents (
       with google-cloud-sdk.components;
       [
