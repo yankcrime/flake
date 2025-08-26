@@ -17,6 +17,9 @@ window#waybar {
     inset 1px 1px 0 rgba(255, 255, 255, 0.8),  /* inner top-left highlight */
     inset -1px -1px 0 rgba(0, 0, 0, 0.3);       /* inner bottom-right shadow */
 
+  /* macOS-style rounded corners - top only */
+  border-radius: 12px 12px 0 0;
+
   color: #000000;
 }
 
@@ -79,6 +82,11 @@ button:hover {
 #workspaces button {
     color: #000000;
     border-left: 1px solid #6c7086;
+}
+
+#workspaces button:first-child {
+    border-left: none;
+    border-top-left-radius: 0;
 }
 
 #workspaces button:hover {
@@ -257,6 +265,17 @@ label:focus {
 
 #custom-style:hover {
     background-color: #DDDDDD;
+}
+
+#custom-nixos-logo {
+    background-color: inherit;
+    background-image: url("/home/nick/Downloads/NixOS-mono.png");
+    background-size: 28px 28px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 40px;
+    padding: 10px 0 10px 10px;
+    border-top-left-radius: 12px;
 }
 
 

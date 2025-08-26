@@ -95,6 +95,7 @@ in
             spacing = 0;
             height = 24;
             modules-left = [
+              "custom/nixos-logo"
               "niri/workspaces"
               "niri/window"
             ];
@@ -181,6 +182,10 @@ in
                 headset = "  ";
                 default = "  ";
               };
+            };
+            "custom/nixos-logo" = {
+              format = " ";
+              tooltip = false;
             };
             "custom/mako" = {
               format = "{icon}";
