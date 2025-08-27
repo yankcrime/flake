@@ -5,22 +5,22 @@
 }
 
 window#waybar {
-  /* Amiga Workbench grey background */
-  background: #BBBBBB;
+  /* Dark grey background */
+  background: #2D2D2D;
 
-  /* Top bevel - light edge at top, dark at bottom */
-  border-top: 2px solid #FFFFFF;
-  border-bottom: 2px solid #666666;
+  /* Subtle raised bevel - lighter edge at top, darker at bottom */
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #222222;
   
-  /* Inner bevel effect */
+  /* Subtle raised bevel effect */
   box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.8),  /* inner top-left highlight */
-    inset -1px -1px 0 rgba(0, 0, 0, 0.3);       /* inner bottom-right shadow */
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1),  /* subtle inner top-left highlight */
+    inset -1px -1px 0 rgba(0, 0, 0, 0.4);       /* subtle inner bottom-right shadow */
 
   /* macOS-style rounded corners - top only */
   border-radius: 12px 12px 0 0;
 
-  color: #000000;
+  color: #FFFFFF;
 }
 
 window#waybar > box {
@@ -80,8 +80,8 @@ button:hover {
 }
 
 #workspaces button {
-    color: #000000;
-    border-left: 1px solid #6c7086;
+    color: #FFFFFF;
+    border-left: 1px solid #555555;
 }
 
 #workspaces button:first-child {
@@ -90,17 +90,17 @@ button:hover {
 }
 
 #workspaces button:hover {
-    background-color: #DDDDDD;
+    background-color: #404040;
 }
 
 #workspaces button.active {
-    background-color: #999999;
-    border-top: 1px solid #666666;
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+    background-color: #1A1A1A;
+    border-top: 1px solid #0D0D0D;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 #workspaces button.active:hover {
-    background-color: #AAAAAA;
+    background-color: #333333;
 }
 
 /* #workspaces button#niri-workspace-browser { */
@@ -140,7 +140,7 @@ button:hover {
 #mpd,
 #custom-style {
     /* padding: 0 10px; */
-    color: #000000;
+    color: #FFFFFF;
     /* background-color: rgba(255, 30, 46, 1.0); */
     /* border-radius: 99px; */
     padding: 10px 10px;
@@ -252,24 +252,24 @@ label:focus {
 }
 
 #taskbar button {
-    color: #000000;
+    color: #FFFFFF;
     padding: 8px 8px 0 8px;
-    border-left: 1px solid #6c7086;
+    border-left: 1px solid #555555;
     /* background-color: rgba(30, 30, 46, 1.0); */
     /* padding: 0; */
 }
 
 #custom-style {
-    border-left: 1px solid #6c7086;
+    border-left: 1px solid #555555;
 }
 
 #custom-style:hover {
-    background-color: #DDDDDD;
+    background-color: #404040;
 }
 
 #custom-nixos-logo {
     background-color: inherit;
-    background-image: url("/home/nick/Downloads/NixOS-mono.png");
+    background-image: url("/home/nick/Downloads/NixOS.svg");
     background-size: 28px 28px;
     background-repeat: no-repeat;
     background-position: center;

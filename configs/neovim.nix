@@ -218,7 +218,7 @@ vim.cmd([[
         return ' [%n] %.40F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
       endfunction
       let &statusline = s:statusline_expr()
-			colorscheme github_dark_default
+      colorscheme github_dark_default
 ]])
 vim.opt.number = true
 vim.opt.showmatch = true
