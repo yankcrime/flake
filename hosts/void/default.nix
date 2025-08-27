@@ -28,6 +28,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    act
     yq
     stern
     kubectl-node-shell

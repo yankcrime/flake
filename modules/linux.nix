@@ -74,6 +74,7 @@ in
 
     # Media (terminal-based)
     ncmpcpp
+    rmpc
   ]);
 
   # Environment

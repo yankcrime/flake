@@ -93,7 +93,7 @@ in
             layer = "top";
             position = "top";
             spacing = 0;
-            height = 24;
+            height = 20;
             modules-left = [
               "custom/nixos-logo"
               "niri/workspaces"
@@ -111,7 +111,7 @@ in
               "custom/mako"
             ];
             tray = {
-              icon-size = 24;
+              icon-size = 20;
               tooltip = false;
               spacing = 10;
             };
@@ -148,13 +148,15 @@ in
               on-click = "activate";
               on-click-middle = "close";
               on-click-right = "fullscreen";
-              icon-size = 48;
+              icon-size = 20;
             };
             "custom/weather" = {
-              format = "{}°";
+              format = "{}";
               tooltip = true;
               interval = 3600;
-              exec = "wttrbar --location Edinburgh";
+              exec = ''
+                wttrbar --location Edinburgh --custom-indicator "{ICON} {FeelsLikeC}° ({areaName})"
+              '';
               return-type = "json";
             };
             network = {
