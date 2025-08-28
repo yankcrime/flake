@@ -1,5 +1,5 @@
 {
-  description = "NixOS configurations for void and carboforce";
+  description = "NixOS configurations for various machines";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";

@@ -105,7 +105,7 @@ spawn-at-startup "swaybg -m tile -i /home/nick/Sync/Configs/Wallpapers/Streak_Ma
 
 prefer-no-csd
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
 }
