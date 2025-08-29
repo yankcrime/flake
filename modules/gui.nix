@@ -33,6 +33,10 @@ in
       
       # Niri configuration
       xdg.configFile."niri/config.kdl".source = ../files/niri/config.kdl;
+
+      xdg.configFile."ghostty/config".source = ../files/ghostty/config;
+      xdg.configFile."ghostty/cursor_smear_fade.glsl".source = ../files/ghostty/cursor_smear_fade.glsl;
+
       dconf.settings = {
         "org/gnome/desktop/input-sources" = {
           xkb-options = [ "ctrl:nocaps" ];
