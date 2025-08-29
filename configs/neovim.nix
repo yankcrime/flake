@@ -21,13 +21,17 @@
       lualine-nvim
       github-nvim-theme
       gruvbox-nvim
-      vim-dirvish
       blink-cmp
       friendly-snippets
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
       trouble-nvim
       nvim-lspconfig
+      snacks-nvim
+      noice-nvim
+      nvim-notify
+      which-key-nvim
+      nui-nvim
     ];
 
     extraLuaConfig = ''
@@ -186,6 +190,67 @@ blink.setup {
   fuzzy = { implementation = "prefer_rust_with_warning" },
   signature = { enabled = true },
 }
+
+local snacks = require("snacks")
+snacks.setup {
+    bigfile = { enabled = false },
+    bufdelete = { enabled = true },
+    dashboard = { enabled = false },
+    explorer = {
+      enabled = true,
+      replace_netrw = true,
+    },
+    indent = { enabled = false },
+    input = {
+      enabled = true,
+      position = float,
+      border = rounded,
+      title_pos = center,
+    },
+    notifier = {
+      enabled = true,
+      timeout = 3000,
+    },
+    picker = {
+      enabled = true,
+      win = {
+        input = {
+          keys = {
+            ["<Esc>"] = { "close", mode = { "n", "i" } },
+          },
+        },
+      },
+    },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = false },
+    statuscolumn = { enabled = false },
+    words = { enabled = true },
+    styles = {
+      notification = {
+        -- wo = { wrap = true } -- Wrap notifications
+      }
+    },
+}
+
+local noice = require("noice")
+noice.setup {
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+    },
+  },
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
+}
+
 vim.g.mapleader = ' ' -- Space
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
@@ -197,6 +262,9 @@ vim.keymap.set('n', '<C-y>', ':Telescope yaml_schema<CR>', {})
 vim.keymap.set('n', '<leader>td', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>gs', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>gg', builtin.live_grep, {})
+
+-- Snacks file picker
+vim.keymap.set('n', '-', function() require("snacks").picker.files() end, {})
 
 vim.keymap.set('n', '<Leader><space>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<Leader>tn', ':tabnext<CR>')
@@ -234,6 +302,7 @@ vim.opt.incsearch = true
 vim.opt.modelines = 5
 vim.opt.signcolumn = "no"
 vim.opt.statuscolumn = "%=%s%C%l "
+vim.deprecate = function() end
 vim.opt.laststatus=3
     '';
   };

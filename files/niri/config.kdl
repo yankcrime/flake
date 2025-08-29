@@ -74,10 +74,12 @@ layout {
 
     border {
         width 4
-        active-color "#5A8E3A"
-        inactive-color "#505050"
 
         urgent-color "#ff3172"
+        active-gradient from="#5A8E3A" to="#ffc880" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view" in="srgb-linear"
+        urgent-gradient from="#800" to="#a33" angle=45
+
     }
 
     shadow {
