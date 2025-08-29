@@ -10,5 +10,4 @@ in
   
   home.packages = commonPackages.shared; 
 
-  # Darwin-specific configuration can go here
 }

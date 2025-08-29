@@ -56,7 +56,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.nick = import ./modules/home-manager-linux.nix;
+            home-manager.users.nick = import ./home/linux.nix;
           }
         ] ++ extraModules;
       };
@@ -80,7 +80,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.nick = import ./modules/home-manager-darwin.nix;
+            home-manager.users.nick = import ./home/darwin.nix;
           }
         ];
       };
