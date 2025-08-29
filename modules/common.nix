@@ -22,6 +22,7 @@
     dig
     openssl
     ripgrep
+    reptyr
 
     # Development tools
     gnumake
@@ -43,6 +44,7 @@
       python-openstackclient
       python-glanceclient
       python-keystoneclient
+      python-neutronclient
       python-ironicclient
       python-octaviaclient
     ]))

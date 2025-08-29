@@ -26,6 +26,7 @@
       friendly-snippets
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
+      trouble-nvim
       nvim-lspconfig
     ];
 

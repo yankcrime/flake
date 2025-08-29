@@ -164,7 +164,7 @@ in
               format-ethernet = "  {ifname}";
             };
             battery = {
-              format = "  {capacity}%";
+              format = "{icon} {capacity}%";
               format-plugged = "  {capacity}%";
               format-icons = [
                 ""
@@ -223,7 +223,7 @@ in
               selection-text = "cdd6f4ff";
               selection-match = "f9e2afff";
               counter = "7f849cff";
-              border = "5A8E3A";
+              border = "8c8c8cff";
             };
             border = {
               width = 2;
