@@ -253,18 +253,17 @@ noice.setup {
 
 vim.g.mapleader = ' ' -- Space
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-vim.keymap.set('n', '<C-f>', builtin.find_files, {})
-vim.keymap.set('n', '<C-s>', builtin.live_grep, {})
-vim.keymap.set('n', '<C-b>', builtin.buffers, {})
-vim.keymap.set('n', '<C-g>', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<C-y>', ':Telescope yaml_schema<CR>', {})
 vim.keymap.set('n', '<leader>td', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>gs', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>gg', builtin.live_grep, {})
 
--- Snacks file picker
 vim.keymap.set('n', '-', function() require("snacks").picker.files() end, {})
+vim.keymap.set('n', '<C-f>', function() Snacks.picker.smart() end, {})
+vim.keymap.set('n', '<C-b>', function() Snacks.picker.buffers() end, {})
+vim.keymap.set('n', '<C-s>', function() Snacks.picker.grep() end, {})
+vim.keymap.set('n', '<C-p>', function() Snacks.picker.git_files() end, {})
+vim.keymap.set('n', '<C-g>', function() Snacks.picker.lsp_symbols() end, {})
 
 vim.keymap.set('n', '<Leader><space>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<Leader>tn', ':tabnext<CR>')
