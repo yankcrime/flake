@@ -45,24 +45,24 @@ require("telescope").setup({
       case_mode = "smart_case",
     }
   },
-	defaults = {
-	        prompt_prefix = "",
-	        entry_prefix = " ",
-	        selection_caret = " ",
-	        layout_config = {
-	          prompt_position = 'bottom',
-	          width = 0.7,
-	          height = 0.7,
-	          preview_width = 0.6,
-	        },
-  mappings = {
-    i = {
-      ["<esc>"] = actions.close,
-      ["<C-j>"] = actions.move_selection_next,
-      ["<C-k>"] = actions.move_selection_previous
-		},
+  defaults = {
+    prompt_prefix = "",
+    entry_prefix = " ",
+    selection_caret = " ",
+    layout_config = {
+      prompt_position = 'bottom',
+      width = 0.7,
+      height = 0.7,
+      preview_width = 0.6,
+    },
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous
+      },
+    },
   },
-},
 })
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("ui-select")
@@ -200,7 +200,10 @@ snacks.setup {
       enabled = true,
       replace_netrw = true,
     },
-    indent = { enabled = false },
+    indent = {
+      enabled = false,
+      only_scope = true,
+    },
     input = {
       enabled = true,
       position = float,
@@ -248,6 +251,12 @@ noice.setup {
     long_message_to_split = true, -- long messages will be sent to a split
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
+  cmdline = {
+      view = "cmdline",
+      format = {
+        cmdline = { icon = ":" },
+      },
   },
 }
 
