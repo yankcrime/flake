@@ -33,6 +33,7 @@ in
       
       # Niri configuration
       xdg.configFile."niri/config.kdl".source = ../files/niri/config.kdl;
+      xdg.configFile."niriswitcher/config.toml".source = ../files/niriswitcher/config.toml;
 
       # Ghostty
       xdg.configFile."ghostty/config".source = ../files/ghostty/config;
@@ -168,9 +169,12 @@ in
             network = {
               format-wifi = "  {essid}";
               format-ethernet = "  {ifname}";
+              format-disconnected = "  Disconnected";
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
             };
             battery = {
               format = "{icon} {capacity}%";
+              format-charging = "  {capacity}%";
               format-plugged = "  {capacity}%";
               format-icons = [
                 ""
@@ -317,6 +321,7 @@ in
       mako
       pavucontrol
       wttrbar
+      pkgs-unstable.niriswitcher
     ];
 
     # Environment variables for Wayland

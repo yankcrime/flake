@@ -21,6 +21,7 @@
       lualine-nvim
       github-nvim-theme
       gruvbox-nvim
+      catppuccin-nvim
       blink-cmp
       friendly-snippets
       telescope-fzf-native-nvim
@@ -32,6 +33,8 @@
       nvim-notify
       which-key-nvim
       nui-nvim
+      lspsaga-nvim
+      nvim-web-devicons
     ];
 
     extraLuaConfig = ''
@@ -258,6 +261,13 @@ noice.setup {
         cmdline = { icon = ":" },
       },
   },
+}
+
+local lspsaga = require("lspsaga")
+lspsaga.setup {
+  lightbulb = {
+    enable = false
+  }
 }
 
 vim.g.mapleader = ' ' -- Space
