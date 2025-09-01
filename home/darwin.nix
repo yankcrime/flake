@@ -1,7 +1,7 @@
 { config, pkgs, pkgs-unstable, ... }:
 
 let
-  commonPackages = import ./common.nix { inherit config pkgs pkgs-unstable; };
+  commonPackages = import ./modules/common.nix { inherit config pkgs pkgs-unstable; };
 in
 {
   imports = [

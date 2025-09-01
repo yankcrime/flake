@@ -22,7 +22,6 @@
     dig
     openssl
     ripgrep
-    reptyr
 
     # Development tools
     gnumake

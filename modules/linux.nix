@@ -60,6 +60,7 @@ in
   environment.systemPackages = commonPackages.shared ++ commonPackages.unstable ++ (with pkgs; [
     # Linux-specific terminal tools
     viddy
+    reptyr
 
     # Linux-specific development tools
     qemu

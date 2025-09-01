@@ -34,6 +34,7 @@ in
       # Niri configuration
       xdg.configFile."niri/config.kdl".source = ../files/niri/config.kdl;
 
+      # Ghostty
       xdg.configFile."ghostty/config".source = ../files/ghostty/config;
       xdg.configFile."ghostty/cursor_smear_fade.glsl".source = ../files/ghostty/cursor_smear_fade.glsl;
 
@@ -55,6 +56,7 @@ in
           toggle-message-tray = [];  # Disables Super+V
         };
       };
+
       services.mako = {
         enable = true;
         settings = {
