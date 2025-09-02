@@ -191,7 +191,7 @@ blink.setup {
     },
   },
   fuzzy = { implementation = "prefer_rust_with_warning" },
-  signature = { enabled = true },
+  signature = { enabled = false },
 }
 
 local snacks = require("snacks")
@@ -253,7 +253,7 @@ noice.setup {
     command_palette = true, -- position the cmdline and popupmenu together
     long_message_to_split = true, -- long messages will be sent to a split
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false, -- add a border to hover docs and signature help
+    lsp_doc_border = true, -- add a border to hover docs and signature help
   },
   cmdline = {
       view = "cmdline",
@@ -269,6 +269,11 @@ lspsaga.setup {
     enable = false
   }
 }
+
+require("catppuccin").setup({
+  flavour = "macchiato", -- latte, frappe, macchiato, mocha
+  transparent_background = true
+})
 
 vim.g.mapleader = ' ' -- Space
 local builtin = require('telescope.builtin')
@@ -305,7 +310,7 @@ vim.cmd([[
         return ' [%n] %.40F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
       endfunction
       let &statusline = s:statusline_expr()
-      colorscheme github_dark_default
+      colorscheme catppuccin-macchiato
 ]])
 vim.opt.number = true
 vim.opt.showmatch = true
