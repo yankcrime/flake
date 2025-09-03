@@ -35,6 +35,7 @@
       nui-nvim
       lspsaga-nvim
       nvim-web-devicons
+      nvim-surround
     ];
 
     extraLuaConfig = ''
@@ -274,6 +275,8 @@ require("catppuccin").setup({
   flavour = "macchiato", -- latte, frappe, macchiato, mocha
   transparent_background = true
 })
+
+require("nvim-surround").setup({})
 
 vim.g.mapleader = ' ' -- Space
 local builtin = require('telescope.builtin')
