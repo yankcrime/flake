@@ -26,6 +26,7 @@ in
 
     # Niri
     programs.niri.enable = true;
+    programs.niri.package = pkgs-unstable.niri;
 
     # Home Manager dconf settings for GNOME
     home-manager.users.nick = {
