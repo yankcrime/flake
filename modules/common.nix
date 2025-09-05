@@ -58,9 +58,4 @@
     nix-direnv
     tmux
   ];
-
-  # Shared unstable packages
-  unstable = with pkgs-unstable; [
-    claude-code
-  ];
 }

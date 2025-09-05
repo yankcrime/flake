@@ -86,7 +86,14 @@ _evalcache direnv hook zsh
 _evalcache starship init zsh
 
 export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/go/bin:${HOME}/bin"
-export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+
+# Make sure Homebrew is initialised on macOS
+#
+if [[ $(uname -m) == 'arm64' ]]; then
+     eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 #zmodload zsh/zprof
 # vim:ts=4:sw=4:ft=zsh:et

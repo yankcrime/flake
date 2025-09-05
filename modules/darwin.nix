@@ -21,6 +21,7 @@ in
       "slack"
       "leader-key"
       "zoom"
+      "claude-code"
     ];
 
     brews = [
@@ -32,7 +33,7 @@ in
   # Nixpkgs configuration
   nixpkgs.config.allowUnfree = true;
   
-  environment.systemPackages = commonPackages.shared ++ commonPackages.unstable ++ (with pkgs;
+  environment.systemPackages = commonPackages.shared ++ (with pkgs;
   [
     nh
   ]);
