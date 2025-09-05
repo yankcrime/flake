@@ -22,6 +22,7 @@
     dig
     openssl
     ripgrep
+    flac
 
     # Development tools
     gnumake

@@ -31,11 +31,13 @@
     act
     yq
     stern
+    brightnessctl
     kubectl-node-shell
     kubectl-view-allocations
     kubectl-cnpg
     kubectl-tree
     cilium-cli
+    fluxcd
     nixos-generators
     fprintd
     iptables

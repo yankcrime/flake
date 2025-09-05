@@ -57,7 +57,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Linux-specific packages
-  environment.systemPackages = commonPackages.shared ++ commonPackages.unstable ++ (with pkgs; [
+  environment.systemPackages = commonPackages.shared ++ (with pkgs; [
     # Linux-specific terminal tools
     viddy
     reptyr
