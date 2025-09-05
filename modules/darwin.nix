@@ -15,6 +15,7 @@ in
       "gpg-suite-no-mail"
       "discord"
       "google-chrome"
+      "firefox"
       "imageoptim"
       "monodraw"
       "rectangle-pro"
