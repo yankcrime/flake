@@ -93,7 +93,7 @@ if [[ $(uname -m) == 'arm64' ]]; then
      eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 #zmodload zsh/zprof
 # vim:ts=4:sw=4:ft=zsh:et

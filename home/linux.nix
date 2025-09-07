@@ -10,6 +10,7 @@ in {
   home.packages = with pkgs; [ 
     syncthing 
     mpdscribble
+    claude-code
   ];
 
   services.mpd = {
