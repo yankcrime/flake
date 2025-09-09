@@ -59,6 +59,27 @@ in
         };
       };
 
+      services.swayidle = {
+        enable = true;
+        systemdTarget = "graphical-session.target";
+        timeouts = [
+          {
+            timeout = 600;
+            command = "${pkgs.swaylock}/bin/swaylock -f";
+          }
+          {
+            timeout = 601;
+            command = "${pkgs-unstable.niri}/bin/niri msg action power-off-monitors";
+          }
+        ];
+        events = [
+          {
+            event = "before-sleep";
+            command = "${pkgs.swaylock}/bin/swaylock -f";
+          }
+        ];
+      };
+
       services.mako = {
         enable = true;
         settings = {
@@ -319,6 +340,7 @@ in
       fuzzel
       waybar
       swaylock
+      swayidle
       mako
       pavucontrol
       wttrbar

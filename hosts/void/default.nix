@@ -38,6 +38,7 @@
     kubectl-tree
     cilium-cli
     fluxcd
+    argocd
     nixos-generators
     fprintd
     iptables
