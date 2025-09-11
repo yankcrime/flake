@@ -17,8 +17,8 @@ window#waybar {
     inset 1px 1px 0 rgba(255, 255, 255, 0.1),  /* subtle inner top-left highlight */
     inset -1px -1px 0 rgba(0, 0, 0, 0.4);       /* subtle inner bottom-right shadow */
 
-  /* macOS-style rounded corners - top only */
-  border-radius: 12px 12px 0 0;
+  /* macOS-style rounded corners - bottom only */
+  border-radius: 0 0 12px 12px;
 
   color: #FFFFFF;
 }
@@ -269,13 +269,9 @@ label:focus {
 
 #custom-nixos-logo {
     background-color: inherit;
-    background-image: url("/home/nick/Downloads/NixOS.svg");
-    background-size: 28px 28px;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-width: 40px;
+    min-width: 20px;
     padding: 10px 0 10px 10px;
-    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
 }
 
 
@@ -373,10 +369,43 @@ label:focus {
 	background-color: transparent;
 }
 
-.niri-taskbar button {
-  border-bottom: solid 3px transparent;
+.niri-taskbar {
+    /* margin-left: 4px; */
 }
 
-.niri-taskbar button.unread {
-  border-bottom: solid 3px white;
+.niri-taskbar button {
+    color: #FFFFFF;
+    padding: 12px 16px 4px 16px;
+    border-left: 1px solid #555555;
+    border-bottom: solid 3px transparent;
+    font-size: 14px;
 }
+
+.niri-taskbar button:first-child {
+    border-left: none;
+}
+
+.niri-taskbar button:hover {
+    background-color: #404040;
+}
+
+.niri-taskbar button.focused {
+    background-color: #1A1A1A;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.niri-taskbar button.focused:hover {
+    background-color: #333333;
+}
+
+.niri-taskbar button.unread,
+.niri-taskbar button.urgent {
+    background-color: inherit;
+    border-bottom: solid 3px #f53c3c;
+}
+
+.niri-taskbar button.unread:hover,
+.niri-taskbar button.urgent:hover {
+    border-bottom: solid 3px #f53c3c;
+}
+

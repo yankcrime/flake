@@ -22,9 +22,9 @@ foreground = #ADC7E6
 #custom-shader=cursor_smear.glsl
 custom-shader=cursor_smear_fade.glsl
 
-alpha-blending = native
-background-opacity = 0.98
-background-blur = true
+#alpha-blending = native
+#background-opacity = 0.98
+#background-blur = true
 
 window-padding-color = background
 window-padding-x = 5

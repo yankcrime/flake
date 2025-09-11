@@ -120,24 +120,21 @@ in
           style = builtins.readFile ../files/waybar/style.css;
           settings = [{
             layer = "top";
-            position = "top";
+            position = "bottom";
             spacing = 0;
-            height = 20;
+            height = 60;
+            width = 0;
             modules-left = [
-              "custom/nixos-logo"
-              "niri/workspaces"
+              "cffi/niri-taskbar"
               "niri/window"
             ];
-            modules-center = [ 
-              "clock" 
-              "custom/weather"
-            ];
+            modules-center = [];
             modules-right = [
-              "tray"
               "network"
               "pulseaudio"
               "battery"
-              "custom/mako"
+              "tray"
+              "clock"
             ];
             tray = {
               icon-size = 20;
@@ -145,7 +142,7 @@ in
               spacing = 10;
             };
             clock = {
-              format = "{:%a %d %h %H:%M}";
+              format = "{:%H:%M}";
               tooltip-format = "<tt><small>{calendar}</small></tt>";
               calendar = {
                 mode = "year";
@@ -163,7 +160,14 @@ in
             };
             "cffi/niri-taskbar" = {
               module_path = "/home/nick/bin/libniri_taskbar.so";
-              notifications = "{}";
+              notifications = {
+                enabled = true;
+              };
+              apps = {
+                slack = [
+                  { match = "\\([0-9]+\\)$"; class = "unread"; }
+                ];
+              };
             };
             "niri/workspaces" = {
               format = "{icon}";
@@ -189,10 +193,11 @@ in
               return-type = "json";
             };
             network = {
-              format-wifi = "  {essid}";
+              format-wifi = " ";
               format-ethernet = "  {ifname}";
-              format-disconnected = "  Disconnected";
+              format-disconnected = " ";
               format-alt = "{ifname}: {ipaddr}/{cidr}";
+              tooltip-format-wifi = "{essid} ({signalStrength}%)  ";
             };
             battery = {
               format = "{icon} {capacity}%";
@@ -208,13 +213,13 @@ in
             };
             pulseaudio = {
               format = "{icon} {volume}%";
-              format-muted = "  ";
+              format-muted = " ";
               format-source = " {volume}%";
-              format-source-muted = "  ";
+              format-source-muted = " ";
               format-icons = {
-                headphone = "  ";
-                headset = "  ";
-                default = "  ";
+                headphone = " ";
+                headset = " ";
+                default = " ";
               };
             };
             "custom/nixos-logo" = {
@@ -224,7 +229,7 @@ in
             "custom/mako" = {
               format = "{icon}";
               format-icons = {
-                default = "  ";
+                default = " ";
               };
               exec = "~/bin/mako-dnd.sh";
               interval = 0;
