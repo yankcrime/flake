@@ -31,6 +31,48 @@ in
     # Home Manager dconf settings for GNOME
     home-manager.users.nick = {
       dconf.enable = true;
+
+      xdg.portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal
+          xdg-desktop-portal-gnome
+          xdg-desktop-portal-gtk
+        ];
+        config = {
+          common = {
+            default = [
+              "gnome"
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Secret" = [
+              "gnome-keyring"
+            ];
+          };
+          niri = {
+            default = [
+              "gnome"
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.FileChooser" = [
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Notification" = [
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Screenshot" = [
+              "gnome"
+            ];
+            "org.freedesktop.impl.portal.ScreenCast" = [
+              "gnome"
+            ];
+            "org.freedesktop.impl.portal.Secret" = [
+              "gnome-keyring"
+            ];
+          };
+        };
+      };
       
       # Niri configuration
       xdg.configFile."niri/config.kdl".source = ../files/niri/config.kdl;
@@ -89,7 +131,7 @@ in
           default-timeout = 5000;
           ignore-timeout = 0;
           max-visible = 5;
-          anchor = "top-right";
+          anchor = "bottom-right";
           outer-margin = 12;
           margin = 8;
           padding = 16;
@@ -116,13 +158,13 @@ in
       };
       programs = {
         waybar = {
-          enable = true;
+          enable = false;
           style = builtins.readFile ../files/waybar/style.css;
           settings = [{
             layer = "top";
             position = "bottom";
-            spacing = 0;
-            height = 60;
+            spacing = 5;
+            height = 55;
             width = 0;
             modules-left = [
               "cffi/niri-taskbar"
@@ -159,7 +201,7 @@ in
               };
             };
             "cffi/niri-taskbar" = {
-              module_path = "/home/nick/bin/libniri_taskbar.so";
+              module_path = "/home/nick/Sync/Configs/Misc/libniri_taskbar.so";
               notifications = {
                 enabled = true;
               };
@@ -167,6 +209,10 @@ in
                 slack = [
                   { match = "\\([0-9]+\\)$"; class = "unread"; }
                 ];
+              };
+              workspace_grouping = {
+                enabled = true;
+                show_separators = true;
               };
             };
             "niri/workspaces" = {
@@ -176,6 +222,9 @@ in
                 "messaging" = "";
                 "dev" = "";
               };
+            };
+            "niri/window" = {
+              format = "{title}";
             };
             "wlr/taskbar" = {
               on-click = "activate";
