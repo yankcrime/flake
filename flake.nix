@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   outputs = {
@@ -33,7 +28,6 @@
     nixpkgs-unstable,
     home-manager,
     darwin,
-    ironbar,
     ...
   }@inputs:
   let
@@ -63,7 +57,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.nick = import ./home/linux.nix;
-            home-manager.sharedModules = [ ironbar.homeManagerModules.default ];
           }
         ] ++ extraModules;
       };

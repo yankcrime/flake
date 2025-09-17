@@ -14,11 +14,6 @@ in
   home.packages = commonPackages.home;
 
   programs = {
-    ironbar = {
-      enable = true;
-      config = {};
-      style = "";
-    };
     git = {
       enable = true;
       userEmail = "nick@dischord.org";

@@ -158,25 +158,27 @@ in
       };
       programs = {
         waybar = {
-          enable = false;
+          enable = true;
           style = builtins.readFile ../files/waybar/style.css;
           settings = [{
             layer = "top";
-            position = "bottom";
-            spacing = 5;
-            height = 55;
-            width = 0;
+            position = "top";
+            spacing = 0;
+            height = 35;
             modules-left = [
-              "cffi/niri-taskbar"
+              "custom/nixos-logo"
+              "niri/workspaces"
               "niri/window"
             ];
-            modules-center = [];
+            modules-center = [
+              "clock" 
+              "custom/weather"
+            ];
             modules-right = [
+              "tray"
               "network"
               "pulseaudio"
               "battery"
-              "tray"
-              "clock"
             ];
             tray = {
               icon-size = 20;
@@ -184,7 +186,7 @@ in
               spacing = 10;
             };
             clock = {
-              format = "{:%H:%M}";
+              format = "{:%a %d %h %H:%M}";
               tooltip-format = "<tt><small>{calendar}</small></tt>";
               calendar = {
                 mode = "year";
