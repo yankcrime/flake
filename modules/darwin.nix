@@ -6,6 +6,11 @@ in
 {
   homebrew = {
     enable = true;
+    onActivation = {
+      upgrade = true;
+      autoUpdate = true;
+      cleanup = "uninstall";
+    };
     casks  = [
       "1password"
       "alfred"
@@ -23,11 +28,17 @@ in
       "leader-key"
       "zoom"
       "claude-code"
+      "docker"
+      "signal"
+      "ghostty"
+      "chatgpt"
     ];
 
     brews = [
       "gnupg"
       "syncthing"
+      "colima"
+      "codex"
     ];
   };
 
