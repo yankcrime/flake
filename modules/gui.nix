@@ -131,7 +131,7 @@ in
           default-timeout = 5000;
           ignore-timeout = 0;
           max-visible = 5;
-          anchor = "bottom-right";
+          anchor = "top-right";
           outer-margin = 12;
           margin = 8;
           padding = 16;
