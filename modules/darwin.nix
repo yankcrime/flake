@@ -30,7 +30,7 @@ in
       "claude-code"
       "docker"
       "signal"
-      "ghostty"
+      "obsidian"
       "chatgpt"
     ];
 
@@ -39,6 +39,7 @@ in
       "syncthing"
       "colima"
       "codex"
+      "vcluster"
     ];
   };
 

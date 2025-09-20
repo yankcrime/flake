@@ -9,6 +9,11 @@
     wget
     curl
     git
+    stern
+    kubectl-node-shell
+    kubectl-view-allocations
+    kubectl-cnpg
+    kubectl-tree
   ];
 
   # System configuration version
