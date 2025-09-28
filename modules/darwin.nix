@@ -32,6 +32,7 @@ in
       "signal"
       "obsidian"
       "chatgpt"
+      "container"
     ];
 
     brews = [

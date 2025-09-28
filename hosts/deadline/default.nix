@@ -14,6 +14,13 @@
     kubectl-view-allocations
     kubectl-cnpg
     kubectl-tree
+    kubectx
+    (google-cloud-sdk.withExtraComponents (
+      with google-cloud-sdk.components;
+      [
+        gke-gcloud-auth-plugin
+      ]
+    ))
   ];
 
   # System configuration version
