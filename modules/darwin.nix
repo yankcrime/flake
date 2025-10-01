@@ -33,6 +33,7 @@ in
       "obsidian"
       "chatgpt"
       "container"
+      "visual-studio-code"
     ];
 
     brews = [
