@@ -69,9 +69,14 @@
   
       kubernetes = {
         style = "";
-        format = "[󱃾 ($cluster in) \\($namespace\\)]($style) ";
+        format = "[󱃾 ($context in) \\($namespace\\)]($style) ";
         disabled = false;
-        detect_env_vars = [ "KUBECONFIG" ];
+        contexts = [
+          {
+            context_pattern = "^teleport\\.glo1\\.nscale\\.com-(?P<cluster>[\\w-]+)$";
+            context_alias = "$cluster";
+          }
+        ];
       };
   
       python = {
