@@ -23,7 +23,7 @@ in
       "firefox"
       "imageoptim"
       "monodraw"
-      "rectangle-pro"
+      "rectangle"
       "slack"
       "leader-key"
       "zoom"
@@ -34,6 +34,7 @@ in
       "chatgpt"
       "container"
       "visual-studio-code"
+      "netnewswire"
     ];
 
     brews = [

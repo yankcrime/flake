@@ -13,6 +13,10 @@ in
   
   home.packages = commonPackages.home;
 
+  # Ghostty
+  xdg.configFile."ghostty/config".source = ../files/ghostty/config;
+  xdg.configFile."ghostty/cursor_smear_fade.glsl".source = ../files/ghostty/cursor_smear_fade.glsl;
+
   programs = {
     git = {
       enable = true;
