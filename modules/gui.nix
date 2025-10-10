@@ -378,6 +378,9 @@ in
       tuba
       gnome-sound-recorder
       gnomeExtensions.clipboard-history
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.arc-menu
+      gnomeExtensions.sound-output-device-chooser
       papers
       apostrophe
 
