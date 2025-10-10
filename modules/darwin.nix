@@ -43,6 +43,8 @@ in
       "colima"
       "codex"
       "vcluster"
+      "lame"
+      "terraform"
     ];
   };
 
