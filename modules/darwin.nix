@@ -13,6 +13,7 @@ in
     };
     casks  = [
       "1password"
+      "antinote"
       "alfred"
       "font-jetbrains-mono"
       "linear-linear"
@@ -35,6 +36,8 @@ in
       "container"
       "visual-studio-code"
       "netnewswire"
+      "zed"
+      "tailscale-app"
     ];
 
     brews = [

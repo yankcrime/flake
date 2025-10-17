@@ -112,8 +112,6 @@
         hostname = "deadline";
         enableHomeManager = true;
       };
-    };
-    darwinConfigurations = {
       nsc1alt0066 = mkDarwinSystem {
         hostname = "nsc1alt0066";
         enableHomeManager = true;

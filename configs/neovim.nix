@@ -299,7 +299,7 @@ vim.cmd([[
     augroup custom_appearance
       autocmd!
       au ColorScheme * hi Normal gui=NONE guifg=NONE guibg=NONE ctermfg=none ctermbg=NONE
-      au ColorScheme * hi Statusline guifg=NONE guibg=#000000 gui=bold
+      " au ColorScheme * hi Statusline guifg=NONE guibg=#000000 gui=bold
     augroup END
     function! s:statusline_expr()
         let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : '''}"
@@ -313,7 +313,7 @@ vim.cmd([[
         return ' [%n] %.40F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
       endfunction
       let &statusline = s:statusline_expr()
-      colorscheme catppuccin-macchiato
+      colorscheme github_light
 ]])
 vim.opt.number = true
 vim.opt.showmatch = true

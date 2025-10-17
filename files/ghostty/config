@@ -12,11 +12,11 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
-theme = "GitHub Dark"
-cursor-color = #40f878
-cursor-color=#4AF626
-cursor-text = 010101
-foreground = #ADC7E6
+theme = "Alabaster"
+#cursor-color = #40f878
+#cursor-color=#4AF626
+#cursor-text = 010101
+#foreground = #ADC7E6
 
 #custom-shader=lumon.glsl
 #custom-shader=cursor_smear.glsl
