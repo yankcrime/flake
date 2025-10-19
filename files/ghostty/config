@@ -33,7 +33,7 @@ window-padding-y = 1
 shell-integration = zsh
 shell-integration-features = sudo, ssh-terminfo
 window-step-resize = true
-window-theme = dark
+window-theme = light
 app-notifications = no-clipboard-copy
 
 clipboard-paste-protection = false
