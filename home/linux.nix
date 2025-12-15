@@ -11,6 +11,8 @@ in {
     syncthing 
     mpdscribble
     claude-code
+    incus
+    teleport_18
   ];
 
   services.mpd = {

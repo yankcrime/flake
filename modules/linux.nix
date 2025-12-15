@@ -64,8 +64,10 @@ in
 
     # Linux-specific development tools
     qemu
+    docker-buildx
 
     # Linux-specific system tools
+    gcr_4
     powertop
     imwheel
     nfs-utils

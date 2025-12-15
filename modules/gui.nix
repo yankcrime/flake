@@ -9,12 +9,8 @@ in
   };
 
   config = mkIf config.modules.gui.enable {
-    # X11/Wayland and desktop environment
-    services.xserver = {
-      enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
 
     # D-Bus (required for GUI applications and desktop environments)
     services.dbus.enable = true;
@@ -342,7 +338,7 @@ in
       inter
       roboto-mono
       jetbrains-mono
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       font-awesome
 
       # Clipboard and notification support
