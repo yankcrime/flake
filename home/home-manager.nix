@@ -29,7 +29,7 @@ in
           key = "B264F01E309D20E4";
           signByDefault = true;
         };
-        aliases = {
+        alias = {
           up = "!git remote update -p; git merge --ff-only @{u}";
           lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
         };
