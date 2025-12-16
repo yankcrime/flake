@@ -26,14 +26,12 @@ in
       "monodraw"
       "rectangle"
       "slack"
-      "leader-key"
       "zoom"
       "claude-code"
       "docker"
       "signal"
       "obsidian"
       "chatgpt"
-      "container"
       "visual-studio-code"
       "netnewswire"
       "zed"
@@ -45,9 +43,11 @@ in
       "syncthing"
       "colima"
       "codex"
+      "incus"
       "vcluster"
       "lame"
       "terraform"
+      "teleport"
     ];
   };
 
