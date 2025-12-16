@@ -48,6 +48,14 @@ in
       "lame"
       "terraform"
       "teleport"
+      "k9s"
+      "docker-buildx"
+      "incus"
+      "ipcalc"
+      "k3sup"
+      "yq"
+      "tmate"
+      "viddy"
     ];
   };
 
