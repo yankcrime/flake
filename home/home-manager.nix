@@ -109,6 +109,7 @@ run-shell ${pkgs.tmuxPlugins.extrakto}/share/tmux-plugins/extrakto/extrakto.tmux
 
     zsh = {
       enable = true;
+      enableCompletion = false;
       plugins = [
         {
           name = "evalcache";
