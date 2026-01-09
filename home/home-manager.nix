@@ -20,14 +20,14 @@ in
   programs = {
     git = {
       enable = true;
+      signing = {
+        key = "B264F01E309D20E4";
+        signByDefault = true;
+      };
       settings = {
         user = {
           email = "nick@dischord.org";
           name = "Nick Jones";
-        };
-        signing = {
-          key = "B264F01E309D20E4";
-          signByDefault = true;
         };
         alias = {
           up = "!git remote update -p; git merge --ff-only @{u}";
