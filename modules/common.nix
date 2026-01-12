@@ -23,6 +23,7 @@
     openssl
     ripgrep
     flac
+    gh
 
     # Development tools
     gnumake
@@ -47,6 +48,7 @@
       python-neutronclient
       python-ironicclient
       python-octaviaclient
+      semver
     ]))
   ];
 

@@ -9,7 +9,7 @@
     wget
     curl
     git
-    yq
+    yq-go
     stern
     kubectl-node-shell
     kubectl-view-allocations

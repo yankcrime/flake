@@ -52,8 +52,9 @@
       };
 
       nix_shell = {
-        disabled = true;
-        format = "via [❄️ $state( \($name\))](bold blue) ";
+        disabled = false;
+        style = "";
+        format = "via [󱄅 $state( \($name\))](bold blue) ";
       };
   
       terraform.disabled = true;
