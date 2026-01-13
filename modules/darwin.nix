@@ -39,6 +39,7 @@ in
     ];
 
     brews = [
+      "awscli"
       "gnupg"
       "syncthing"
       "colima"

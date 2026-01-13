@@ -16,6 +16,7 @@
     kubectl-cnpg
     kubectl-tree
     cilium-cli
+    qemu
     (google-cloud-sdk.withExtraComponents (
       with google-cloud-sdk.components;
       [
