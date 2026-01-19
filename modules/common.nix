@@ -34,6 +34,7 @@
     kubernetes-helm
     krew
     kubie
+    kubectx
     helm-docs
 
     # System tools
