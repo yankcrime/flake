@@ -44,6 +44,7 @@ in
       "syncthing"
       "colima"
       "codex"
+      "hl"
       "incus"
       "vcluster"
       "lame"
