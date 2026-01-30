@@ -28,7 +28,8 @@ in
       "slack"
       "zoom"
       "claude-code"
-      "docker"
+      "docker-desktop"
+      "mimestream"
       "signal"
       "obsidian"
       "chatgpt"
@@ -36,6 +37,7 @@ in
       "netnewswire"
       "zed"
       "tailscale-app"
+      "codex"
     ];
 
     brews = [
@@ -43,7 +45,6 @@ in
       "gnupg"
       "syncthing"
       "colima"
-      "codex"
       "hl"
       "incus"
       "vcluster"
@@ -91,7 +92,7 @@ in
       launchanim = true;
       mouse-over-hilite-stack = true;
       orientation = "bottom";
-      tilesize = 48;
+      tilesize = 42;
     };
     
     finder = {
