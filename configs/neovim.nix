@@ -71,58 +71,50 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("ui-select")
 
--- LSP Configuration
-local lspconfig = require('lspconfig')
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufopts = { noremap=true, silent=true, buffer=args.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  end,
+})
 
--- Common LSP keybindings
-local on_attach = function(client, bufnr)
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-end
-
--- Configure LSP servers
-lspconfig.gopls.setup{
-  on_attach = on_attach,
+vim.lsp.config('gopls', {
   settings = {
     gopls = {
-      analyses = {
-        unusedparams = true,
-      },
+      analyses = { unusedparams = true },
       staticcheck = true,
       gofumpt = true,
     },
   },
-}
+})
 
-lspconfig.pyright.setup{
-  on_attach = on_attach,
+vim.lsp.config('pyright', {
   settings = {
     python = {
       analysis = {
         autoSearchPaths = true,
         diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true
-      }
-    }
-  }
-}
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
 
-lspconfig.yamlls.setup{
-  on_attach = on_attach,
+vim.lsp.config('yamlls', {
   settings = {
     yaml = {
       schemas = {
@@ -136,7 +128,19 @@ lspconfig.yamlls.setup{
       },
     },
   },
-}
+})
+
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      workspace = { checkThirdParty = false },
+    },
+  },
+})
+
+vim.lsp.enable({'gopls', 'pyright', 'yamlls', 'lua_ls'})
+
 local blink = require("blink.cmp")
 blink.setup {
   keymap = { preset = "super-tab" },
