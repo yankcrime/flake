@@ -19,6 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hl.url = "github:pamburus/hl";
+
   };
 
   outputs = {
@@ -28,6 +30,7 @@
     nixpkgs-unstable,
     home-manager,
     darwin,
+    hl,
     ...
   }@inputs:
   let

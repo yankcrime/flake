@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, pkgs-unstable, inputs, ... }:
 
 let
   commonPackages = import ./common.nix { inherit config pkgs pkgs-unstable; };
@@ -62,7 +62,10 @@ in
     viddy
     reptyr
 
+    inputs.hl.packages.${pkgs.system}.bin
+
     # Linux-specific development tools
+    gcc
     qemu
     docker-buildx
 

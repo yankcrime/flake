@@ -155,17 +155,13 @@ in
           style = builtins.readFile ../files/waybar/style.css;
           settings = [{
             layer = "top";
-            position = "top";
+            position = "left";
             spacing = 0;
-            height = 35;
             modules-left = [
-              "custom/nixos-logo"
               "niri/workspaces"
-              "niri/window"
             ];
             modules-center = [
               "clock" 
-              "custom/weather"
             ];
             modules-right = [
               "tray"
@@ -174,12 +170,11 @@ in
               "battery"
             ];
             tray = {
-              icon-size = 20;
               tooltip = false;
               spacing = 10;
             };
             clock = {
-              format = "{:%a %d %h %H:%M}";
+              format = "{:%e\n%m\n\n<b>%H\n%M</b>}";
               tooltip-format = "<tt><small>{calendar}</small></tt>";
               calendar = {
                 mode = "year";
@@ -211,15 +206,16 @@ in
               };
             };
             "niri/workspaces" = {
-              format = "{icon}";
+              format = "<span size='5pt'>{icon}</span>";
+              on-click = "activate";
               format-icons = {
-                "web" = "";
-                "messaging" = "";
-                "dev" = "";
+                "focused" = "";
+                "default" = "";
               };
             };
             "niri/window" = {
-              format = "{title}";
+              "icon" = true;
+              "icon-size" = 16;
             };
             "wlr/taskbar" = {
               on-click = "activate";
@@ -244,9 +240,9 @@ in
               tooltip-format-wifi = "{essid} ({signalStrength}%)  ";
             };
             battery = {
-              format = "{icon} {capacity}%";
-              format-charging = "  {capacity}%";
-              format-plugged = "  {capacity}%";
+              format = "{capacity}%";
+              format-charging = "{capacity}%";
+              format-plugged = "{capacity}%";
               format-icons = [
                 ""
                 ""
@@ -256,7 +252,7 @@ in
               ];
             };
             pulseaudio = {
-              format = "{icon} {volume}%";
+              format = "{volume}%";
               format-muted = " ";
               format-source = " {volume}%";
               format-source-muted = " ";

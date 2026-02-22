@@ -82,7 +82,7 @@
   
       python = {
         disabled = false;
-        format = "via [ ($version )]($style)(($virtualenv))";
+        format = "via [ ($version )]($style)(($virtualenv)) ";
         style = "fg:dark_grey";
         detect_extensions = [ ];
         detect_files = [

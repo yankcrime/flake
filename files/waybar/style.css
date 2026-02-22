@@ -1,29 +1,24 @@
 * {
+    /* `otf-font-awesome` is required to be installed for icons */
     font-family: 'Adwaita Sans', 'Font Awesome';
-    font-size: 18;
-    font-weight: 500;
+    font-size: 14px;
     font-feature-settings: "tnum";
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 window#waybar {
-  /* Transparent background */
-  background: rgba(0, 0, 0, 0.3);
-
-  /* Remove borders for cleaner look */
-  border: none;
-  
-  /* Remove shadows for minimal appearance */
-  box-shadow: none;
-
-  /* Remove rounded corners for thin bar */
-  border-radius: 0;
-
-  color: #FFFFFF;
+    background: transparent;
+    background-color: rgba(30, 30, 46, 1.0);
+    border-right: 1px solid #6c7086;
+    /* background-color: black; */
+    /* border-bottom: 2px solid rgba(147, 153, 178, 0.5); */
+    /* border: 1px solid rgba(166, 173, 200, 1.0); */
+    color: #ffffff;
+    /* transition-property: background-color; */
+    /* transition-duration: .5s; */
 }
 
 window#waybar > box {
-    padding: 4px 0;
+    /* padding: 4px 0; */
 }
 
 window#waybar.hidden {
@@ -79,29 +74,26 @@ button:hover {
 }
 
 #workspaces button {
-    color: #FFFFFF;
-    border-left: 1px solid #555555;
-}
-
-#workspaces button:first-child {
-    border-left: none;
-    border-top-left-radius: 0;
+    padding: 0 0;
+    color: #f0f0ff;
+    border-right: 1px solid #6c7086;
+    font-size: 8px;
 }
 
 #workspaces button:hover {
-    background-color: #404040;
+    background-color: rgba(49, 50, 68, 1.0);
 }
 
 #workspaces button.active {
-    background-color: transparent;
-    border-top: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
-    box-shadow: none;
+    background-color: rgba(88, 91, 112, 1.0);
 }
 
 #workspaces button.active:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+    background-color: rgba(108, 112, 134, 1.0);
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
 }
 
 /* #workspaces button#niri-workspace-browser { */
@@ -141,10 +133,10 @@ button:hover {
 #mpd,
 #custom-style {
     /* padding: 0 10px; */
-    color: #FFFFFF;
+    color: #f0f0ff;
     /* background-color: rgba(255, 30, 46, 1.0); */
     /* border-radius: 99px; */
-    padding: 6px 8px;
+    padding: 8px 8px;
 }
 
 #custom-notification {
@@ -174,38 +166,8 @@ button:hover {
 }
 
 #battery {
-    /* background-color: #585b70; */
-
-/*	background-color: #313244; */
-/*	border-left: 1px solid #6c7086; */
-
-    /* color: #000000; */
-    /* margin-top: 4px; */
+    border-right: 1px solid #6c7086;
 }
-
-/*
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-*/
 
 label:focus {
     background-color: #000000;
@@ -213,7 +175,7 @@ label:focus {
 
 #cpu {
     background-color: #313244;
-    border-left: 1px solid #6c7086;
+    border-right: 1px solid #6c7086;
     /* color: #000000; */
     /* border-radius: 99px 99px 0px 0px; */
     /* padding: 10px 0 0 0; */
@@ -223,7 +185,7 @@ label:focus {
 #memory {
     /* background-color: #45475a; */
     background-color: #313244;
-    border-left: 1px solid #6c7086;
+    border-right: 1px solid #6c7086;
     /* color: #000000; */
     /* border-radius: 0px 99px 99px 0px; */
     /* padding: 0 10px 0 0; */
@@ -253,32 +215,56 @@ label:focus {
 }
 
 #taskbar button {
-    color: #FFFFFF;
+    color: #f0f0ff;
     padding: 8px 8px 0 8px;
-    border-left: 1px solid #555555;
+    border-right: 1px solid #6c7086;
     /* background-color: rgba(30, 30, 46, 1.0); */
     /* padding: 0; */
 }
 
+#taskbar button:first-child {
+    /* border-radius: 99px 0 0 99px; */
+}
+
+#taskbar button:last-child {
+    /* border-radius: 0 99px 99px 0; */
+}
+
+#taskbar button:first-child:last-child {
+    /* border-radius: 99px; */
+}
+
+#taskbar button:hover {
+    background-color: rgba(49, 50, 68, 1.0);
+}
+
+#taskbar button.active {
+    background-color: rgba(88, 91, 112, 1.0);
+}
+
+#taskbar button.active:hover {
+    background-color: rgba(108, 112, 134, 1.0);
+}
+
 #custom-style {
-    border-left: 1px solid #555555;
+    border-right: 1px solid #6c7086;
 }
 
 #custom-style:hover {
-    background-color: #404040;
+    background-color: rgba(49, 50, 68, 1.0);
 }
 
-#custom-nixos-logo {
-    background-color: inherit;
-    background-image: url("/home/nick/Downloads/NixOS.svg");
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-width: 32px;
-    padding: 2px 4px;
-    border-radius: 0;
+#pulseaudio {
+    background-color: transparent;
+    border-right: 1px solid #6c7086;
+ /*   background-color: #f1c40f; */
+/*    color: #000000; */
 }
 
+#pulseaudio.muted {
+/*    background-color: #90b1b1; */
+/*    color: #2a5c45; */
+}
 
 #wireplumber {
     background-color: #fff0f5;
@@ -313,6 +299,10 @@ label:focus {
 
 #tray {
     /* background-color: #2980b9; */
+}
+
+#tray > * {
+    background-color: transparent;
 }
 
 #tray > .passive {
@@ -373,5 +363,3 @@ label:focus {
 #scratchpad.empty {
 	background-color: transparent;
 }
-
-
