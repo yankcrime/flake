@@ -33,17 +33,6 @@ input {
 
 spawn-at-startup "dms" "run"
 
-output "eDP-1" {
-    scale 1
-}
-
-output "DP-1" {
-    scale 1
-}
-output "DP-3" {
-    scale 1
-}
-
 cursor {
     xcursor-theme "Adwaita"
     xcursor-size 32
@@ -389,3 +378,7 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/outputs.kdl"
