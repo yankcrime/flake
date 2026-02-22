@@ -115,170 +115,7 @@ in
         ];
       };
 
-      services.mako = {
-        enable = true;
-        settings = {
-          group-by = "app-name,summary";
-          font = "Adwaita Sans 14";
-          layer = "top";
-          default-timeout = 5000;
-          ignore-timeout = 0;
-          max-visible = 5;
-          anchor = "top-right";
-          outer-margin = 12;
-          margin = 8;
-          padding = 16;
-          width = 460;
-          height = 180;
-          border-size = 1;
-          border-radius = 18;
-          icon-location = "left";
-          icons = 1;
-          max-icon-size = 48;
-          icon-border-radius = 12;
-          format = "<b>%s</b>\\n%b";
-          background-color = "#242424E6";
-          text-color = "#FFFFFFFF";
-          border-color = "#FFFFFF1A";
-          "urgency=critical" = {
-            border-color = "#2B1A1AE6";
-            background-color = "#242424E6";
-          };
-          "mode=do-not-disturb"= {
-            invisible = 1;
-          };
-        };
-      };
       programs = {
-        waybar = {
-          enable = true;
-          style = builtins.readFile ../files/waybar/style.css;
-          settings = [{
-            layer = "top";
-            position = "left";
-            spacing = 0;
-            modules-left = [
-              "niri/workspaces"
-            ];
-            modules-center = [
-              "clock" 
-            ];
-            modules-right = [
-              "tray"
-              "network"
-              "pulseaudio"
-              "battery"
-            ];
-            tray = {
-              tooltip = false;
-              spacing = 10;
-            };
-            clock = {
-              format = "{:%e\n%m\n\n<b>%H\n%M</b>}";
-              tooltip-format = "<tt><small>{calendar}</small></tt>";
-              calendar = {
-                mode = "year";
-                mode-mon-col = 3;
-                weeks-pos = "right";
-                on-scroll = 1;
-                format = {
-                  months = "<span color='#ffead3'><b>{}</b></span>";
-                  days = "<span color='#ecc6d9'><b>{}</b></span>";
-                  weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                  weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                  today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-                };
-              };
-            };
-            "cffi/niri-taskbar" = {
-              module_path = "/home/nick/Sync/Configs/Misc/libniri_taskbar.so";
-              notifications = {
-                enabled = true;
-              };
-              apps = {
-                slack = [
-                  { match = "\\([0-9]+\\)$"; class = "unread"; }
-                ];
-              };
-              workspace_grouping = {
-                enabled = true;
-                show_separators = true;
-              };
-            };
-            "niri/workspaces" = {
-              format = "<span size='5pt'>{icon}</span>";
-              on-click = "activate";
-              format-icons = {
-                "focused" = "";
-                "default" = "";
-              };
-            };
-            "niri/window" = {
-              "icon" = true;
-              "icon-size" = 16;
-            };
-            "wlr/taskbar" = {
-              on-click = "activate";
-              on-click-middle = "close";
-              on-click-right = "fullscreen";
-              icon-size = 20;
-            };
-            "custom/weather" = {
-              format = "{}";
-              tooltip = true;
-              interval = 3600;
-              exec = ''
-                wttrbar --location Edinburgh --custom-indicator "{ICON} {FeelsLikeC}° ({areaName})"
-              '';
-              return-type = "json";
-            };
-            network = {
-              format-wifi = " ";
-              format-ethernet = "  {ifname}";
-              format-disconnected = " ";
-              format-alt = "{ifname}: {ipaddr}/{cidr}";
-              tooltip-format-wifi = "{essid} ({signalStrength}%)  ";
-            };
-            battery = {
-              format = "{capacity}%";
-              format-charging = "{capacity}%";
-              format-plugged = "{capacity}%";
-              format-icons = [
-                ""
-                ""
-                ""
-                ""
-                ""
-              ];
-            };
-            pulseaudio = {
-              format = "{volume}%";
-              format-muted = " ";
-              format-source = " {volume}%";
-              format-source-muted = " ";
-              format-icons = {
-                headphone = " ";
-                headset = " ";
-                default = " ";
-              };
-            };
-            "custom/nixos-logo" = {
-              format = " ";
-              tooltip = false;
-            };
-            "custom/mako" = {
-              format = "{icon}";
-              format-icons = {
-                default = " ";
-              };
-              exec = "~/bin/mako-dnd.sh";
-              interval = 0;
-              return-type = "json";
-              on-click = "~/bin/mako-dnd.sh";
-            };
-
-          }];
-        };
         fuzzel = {
           enable = true;
           settings = {
@@ -376,6 +213,10 @@ in
       papers
       apostrophe
 
+      pkgs-unstable.dms-shell
+      pkgs-unstable.quickshell
+      pkgs-unstable.dgop
+
       # Security
       pkgs-unstable._1password-gui
 
@@ -386,13 +227,9 @@ in
       swaybg
       xwayland-satellite
       fuzzel
-      waybar
       swaylock
       swayidle
-      mako
       pavucontrol
-      wttrbar
-      pkgs-unstable.niriswitcher
     ];
 
     # Environment variables for Wayland
