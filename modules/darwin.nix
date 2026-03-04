@@ -52,6 +52,7 @@ in
       "make"
       "vcluster"
       "lame"
+      "skopeo"
       "terraform"
       "teleport"
       "k9s"

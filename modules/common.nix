@@ -44,6 +44,7 @@
     # Python with OpenStack clients
     (python3.withPackages (ps: with ps; [
       python-openstackclient
+      osc-placement
       python-glanceclient
       python-keystoneclient
       python-neutronclient
