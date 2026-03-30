@@ -27,6 +27,7 @@ in
       "monodraw"
       "rectangle"
       "slack"
+      "stats"
       "zoom"
       "claude-code"
       "docker-desktop"
@@ -36,7 +37,6 @@ in
       "chatgpt"
       "visual-studio-code"
       "netnewswire"
-      "zed"
       "tailscale-app"
       "codex"
     ];
