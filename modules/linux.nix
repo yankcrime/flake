@@ -71,16 +71,10 @@ in
 
     # Linux-specific system tools
     gcr_4
-    powertop
     imwheel
     nfs-utils
     pciutils
-    throttled
     _1password-cli
-
-    # Media (terminal-based)
-    ncmpcpp
-    rmpc
   ]);
 
   # Environment
@@ -88,10 +82,8 @@ in
 
   # Services
   services = {
-    throttled.enable = true;
     fwupd.enable = true;
     openssh.enable = true;
-    mpd.user = "nick";
   };
 
   # Networking
@@ -110,9 +102,6 @@ in
 
   # Virtualization
   virtualisation.docker.enable = true;
-
-  # Power management
-  powerManagement.powertop.enable = true;
 
   # Swap
   swapDevices = [

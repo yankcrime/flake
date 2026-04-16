@@ -20,6 +20,7 @@
     };
 
     hl.url = "github:pamburus/hl";
+    thermal-governor.url = "github:yankcrime/thermal-governor";
 
   };
 
@@ -31,6 +32,7 @@
     home-manager,
     darwin,
     hl,
+    thermal-governor,
     ...
   }@inputs:
   let
@@ -38,10 +40,10 @@
     darwinSystem = "aarch64-darwin";
     
     # Helper function to create a NixOS system with optional home-manager and GUI
-    mkNixosSystem = { hostname, enableHomeManager ? true, enableGUI ? true, extraModules ? [] }: 
+    mkNixosSystem = { hostname, enableHomeManager ? true, enableGUI ? true, enableLaptop ? false, extraModules ? [] }:
       nixpkgs.lib.nixosSystem {
         system = linuxSystem;
-        specialArgs = { 
+        specialArgs = {
           inherit inputs;
           pkgs-unstable = import nixpkgs-unstable {
             system = linuxSystem;
@@ -54,6 +56,10 @@
           {
             modules.gui.enable = enableGUI;
           }
+        ] ++ nixpkgs.lib.optionals enableLaptop [
+          thermal-governor.nixosModules.default
+          { services.thermal-governor.enable = true; }
+          ./modules/laptop.nix
         ] ++ nixpkgs.lib.optionals enableHomeManager [
           home-manager.nixosModules.home-manager
           {
@@ -90,16 +96,18 @@
   in
   {
     nixosConfigurations = {
-      void = mkNixosSystem { 
-        hostname = "void"; 
+      void = mkNixosSystem {
+        hostname = "void";
         enableHomeManager = true;
         enableGUI = true;
+        enableLaptop = true;
       };
 
-      carboforce = mkNixosSystem { 
-        hostname = "carboforce"; 
+      carboforce = mkNixosSystem {
+        hostname = "carboforce";
         enableHomeManager = true;
         enableGUI = true;
+        enableLaptop = true;
       };
 
       # Headless development VM

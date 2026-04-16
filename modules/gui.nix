@@ -187,8 +187,9 @@ in
       gnome-sound-recorder
       gnomeExtensions.clipboard-history
       gnomeExtensions.dash-to-dock
-      gnomeExtensions.arc-menu
       gnomeExtensions.sound-output-device-chooser
+      gnomeExtensions.weather-oclock
+      gnomeExtensions.set-notification-banner-position
       papers
       apostrophe
 
