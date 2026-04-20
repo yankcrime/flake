@@ -16,6 +16,24 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  boot.initrd.luks.cryptoModules = [
+      "aes"
+      # "aes_generic"
+      "blowfish"
+      "twofish"
+      "serpent"
+      "cbc"
+      "xts"
+      "lrw"
+      "sha1"
+      "sha256"
+      "sha512"
+      "af_alg"
+      "algif_skcipher"
+      "cryptd"
+      "input_leds" # for capslock LED on most keyboards in case decryption requires password
+  ];
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/180e0008-2640-43f9-aa1d-31242ac83737";
       fsType = "ext4";
