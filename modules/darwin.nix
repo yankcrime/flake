@@ -13,6 +13,7 @@ in
     };
     casks  = [
       "1password"
+      "1password-cli"
       "antinote"
       "alfred"
       "conductor"
@@ -55,6 +56,7 @@ in
       "skopeo"
       "terraform"
       "teleport"
+      "tilt"
       "k9s"
       "docker-buildx"
       "incus"
