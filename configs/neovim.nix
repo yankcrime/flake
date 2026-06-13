@@ -40,7 +40,7 @@
       nvim-surround
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
 local actions = require("telescope.actions")
 require("telescope").setup({
   extensions = {
