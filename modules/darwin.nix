@@ -9,7 +9,6 @@ in
     onActivation = {
       upgrade = true;
       autoUpdate = true;
-      cleanup = "uninstall";
     };
     casks  = [
       "1password"
@@ -18,13 +17,15 @@ in
       "alfred"
       "conductor"
       "font-jetbrains-mono"
-      "linear-linear"
+      "linear"
       "notion"
       "gpg-suite-no-mail"
+      "granola"
       "discord"
       "google-chrome"
       "firefox"
       "imageoptim"
+      "markedit"
       "monodraw"
       "rectangle"
       "slack"
@@ -40,12 +41,14 @@ in
       "netnewswire"
       "tailscale-app"
       "codex"
+      "codex-app"
     ];
 
     brews = [
       "awscli"
       "gnupg"
       "clusterctl"
+      "dnsmasq"
       "syncthing"
       "colima"
       "hl"
@@ -53,6 +56,7 @@ in
       "make"
       "vcluster"
       "lame"
+      "mcp-grafana"
       "skopeo"
       "terraform"
       "teleport"
@@ -113,6 +117,7 @@ in
       KeyRepeat = 2;
       InitialKeyRepeat = 15;
       NSWindowShouldDragOnGesture = true;
+#      NSMenuEnableActionImages = false;
     };
   };
 }
