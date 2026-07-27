@@ -62,6 +62,10 @@
       java.disabled = true;
       helm.disabled = true;
       
+      buf = {
+        disabled = true;
+      };
+
       golang = {
         disabled = true;
         style = "";
