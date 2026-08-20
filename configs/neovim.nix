@@ -211,7 +211,7 @@ snacks.setup {
       replace_netrw = true,
     },
     indent = {
-      enabled = false,
+      enabled = true,
       only_scope = true,
     },
     input = {

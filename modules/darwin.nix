@@ -20,7 +20,6 @@ in
       "linear"
       "notion"
       "gpg-suite-no-mail"
-      "granola"
       "discord"
       "google-chrome"
       "firefox"
