@@ -16,6 +16,7 @@ in
   # Ghostty
   xdg.configFile."ghostty/config".source = ../files/ghostty/config;
   xdg.configFile."ghostty/cursor_smear_fade.glsl".source = ../files/ghostty/cursor_smear_fade.glsl;
+  xdg.configFile."ghostty/blaze.glsl".source = ../files/ghostty/blaze.glsl;
 
   programs = {
     git = {
@@ -33,64 +34,56 @@ in
           up = "!git remote update -p; git merge --ff-only @{u}";
           lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
         };
-        extraConfig = {
-          init = {
-            defaultBranch = "main";
-          };
-          column = {
-            ui = "auto";
-          };
-          branch = {
-            sort = "-committerdate";
-          };
-          tag = {
-            sort = "version:refname";
-          };
-          diff = {
-            algorithm = "histogram";
-            colorMoved = "plain";
-            mnemonicPrefix = true;
-            renames = true;
-          };
-          push = {
-            default = "simple";
-            autoSetupRemote = true;
-            followTags = true;
-          };
-          fetch = {
-            prune = true;
-            pruneTags = true;
-            all = true;
-          };
-          merge = {
-            conflictstyle = "zdiff3";
-          };
-          credential = {
-            helper = "cache --timeout=7200";
-          };
-          gitreview = {
-            username = "yankcrime";
-          };
-          github = {
-            user = "yankcrime";
-          };
-          "url \"ssh://git@github.com/\"" = {
-            insteadOf = [ "https://github.com/" "git://github.com/" ];
-          };
-          "filter \"lfs\"" = {
-            clean = "git-lfs clean -- %f";
-            smudge = "git-lfs smudge -- %f";
-            process = "git-lfs filter-process";
-            required = true;
-          };
+        init = {
+          defaultBranch = "main";
+        };
+        column = {
+          ui = "auto";
+        };
+        branch = {
+          sort = "-committerdate";
+        };
+        tag = {
+          sort = "version:refname";
+        };
+        diff = {
+          algorithm = "histogram";
+          colorMoved = "plain";
+          mnemonicPrefix = true;
+          renames = true;
+        };
+        push = {
+          default = "simple";
+          autoSetupRemote = true;
+          followTags = true;
+        };
+        fetch = {
+          prune = true;
+          pruneTags = true;
+          all = true;
+        };
+        merge = {
+          conflictstyle = "zdiff3";
+        };
+        credential = {
+          helper = "cache --timeout=7200";
+        };
+        gitreview = {
+          username = "yankcrime";
+        };
+        github = {
+          user = "yankcrime";
+        };
+        url."ssh://git@github.com/" = {
+          insteadOf = [ "https://github.com/" "git://github.com/" ];
+        };
+        filter.lfs = {
+          clean = "git-lfs clean -- %f";
+          smudge = "git-lfs smudge -- %f";
+          process = "git-lfs filter-process";
+          required = true;
         };
       };
-    };
-
-    direnv = {
-      enable = true;
-      enableZshIntegration = false;
-      nix-direnv.enable = true;
     };
 
     tmux = {
