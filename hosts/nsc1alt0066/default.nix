@@ -6,6 +6,7 @@
 
   # macOS-specific packages
   environment.systemPackages = with pkgs; [
+    fluxcd
     wget
     curl
     git

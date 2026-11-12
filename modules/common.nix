@@ -17,6 +17,7 @@
     mosh
     fastfetch
     jq
+    just
     file
     doggo
     dig
@@ -59,8 +60,8 @@
     httpie 
     fzf 
     go 
-    direnv
-    nix-direnv
+    golangci-lint
+    gopls
     tmux
   ];
 }
