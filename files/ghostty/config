@@ -3,21 +3,20 @@ auto-update-channel = tip
 
 scrollback-limit = 100000000
 
-# font-size = 14
+font-size = 15
 
-# font-family = "PragmataPro Liga"
-#font-family = TX-02
+# font-family = "Triplicate T4c"
 font-style = Light
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
 # theme = "Alabaster"
-theme = "GitHub Dark"
-cursor-color = #40f878
-cursor-color=#4AF626
-cursor-text = 010101
-foreground = #ADC7E6
+theme = "Atom One Light"
+cursor-color = #305CDE
+#cursor-color=#4AF626
+cursor-text = #FFFAFA
+#foreground = #ADC7E6
 
 #custom-shader=lumon.glsl
 #custom-shader=cursor_smear.glsl
@@ -41,7 +40,7 @@ clipboard-paste-protection = false
 
 macos-option-as-alt = true
 macos-non-native-fullscreen = visible-menu
-macos-titlebar-style = native
+macos-titlebar-style = tabs
 mouse-hide-while-typing = true
 
 keybind = shift+enter=text:\n
